@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ahn <ahn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:51:33 by jooahn            #+#    #+#             */
-/*   Updated: 2024/01/26 15:52:22 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/04 19:20:57 by ahn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
+#include <stdio.h>
 
 t_color	color(t_component r, t_component g, t_component b)
 {
@@ -20,4 +21,9 @@ t_color	color(t_component r, t_component g, t_component b)
 	color.g = g;
 	color.b = b;
 	return (color);
+}
+
+void	write_color(t_color color)
+{
+	printf("%d %d %d\n", (int)(255.999 * color.r), (int)(255.999 * color.g), (int)(255.999 * color.b));
 }

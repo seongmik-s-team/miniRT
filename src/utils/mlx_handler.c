@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ahn <ahn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:02:30 by jooahn            #+#    #+#             */
-/*   Updated: 2024/01/26 16:04:11 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/04 18:48:56 by ahn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_handler.h"
-#include <mlx.h>
+#include "mlx.h"
 #include <stdlib.h>
 
 int	key_handler(int keycode, t_vars *vars)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ahn <ahn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:34:23 by jooahn            #+#    #+#             */
-/*   Updated: 2024/01/26 15:59:07 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/04 18:28:34 by ahn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define RAY_H
 
 # include "data.h"
-# include "point3.h"
 # include "vector3.h"
 
 typedef struct s_ray	t_ray;

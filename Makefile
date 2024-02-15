@@ -5,10 +5,14 @@ NAME	=	miniRT
 #
 
 SRCS	=	\
-			src/main.c
-			src/utils/vector3_1.c
-			src/utils/vector3_2.c
-			src/utils/ray.c
+			src/main.c \
+			src/utils/camera.c \
+			src/utils/color.c \
+			src/utils/point3.c \
+			src/utils/ray.c \
+			src/utils/vector3_1.c \
+			src/utils/vector3_2.c \
+			src/utils/viewport.c
 
 OBJS = $(SRCS:%.c=%.o)
 
@@ -20,6 +24,7 @@ CC		=	cc
 CFLAGS	=	-Wall -Werror -Wextra
 CLIB	=	-Lmlx -lmlx -framework OpenGL -framework Appkit -Imlx
 INC		=	./includes
+MLX		=	./mlx
 
 #
 # Rules
@@ -31,8 +36,7 @@ all		: $(NAME)
 	$(CC) $(CFLAGS)  -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -I $(INC) $(CLIB) $(SRCS) -o $(NAME)
-	install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
+	$(CC) $(CFLAGS) -I$(INC) -I$(MLX) $(SRCS) -o $(NAME)
 
 clean	:
 	rm -rf $(OBJS)
