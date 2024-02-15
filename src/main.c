@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:04:15 by jooahn            #+#    #+#             */
-/*   Updated: 2024/01/26 16:18:20 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/15 09:22:35 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "mlx_handler.h"
 #include "ray.h"
 #include "viewport.h"
-#include <mlx.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -23,11 +22,9 @@ int	main(void)
 {
 	int			size_x;
 	int			size_y;
-	int			j;
-	int			i;
 	t_ray		ray;
 	t_color		color;
-	t_viewport	vp;
+	//t_viewport	vp;
 
 	size_x = 1920;
 	size_y = 1080;
@@ -49,14 +46,15 @@ int	main(void)
 	// mlx_key_hook(vars.win_ptr, key_handler, &vars);
 	// mlx_hook(vars.win_ptr, CLOSE, 0, close_event, &vars);
 	// mlx_loop(vars.mlx_ptr);
-	vp = viewport(size_x, size_y, 1);
+	//vp = viewport(size_x, size_y, 1);
+	printf("P3\n%d %d\n255\n", size_x, size_y);
 	for (int i = 0; i < size_x; i++)
 	{
 		for (int j = 0; j < size_y; j++)
 		{
 			ray = raycast(point3(0, 0, 0), vector3(0, 0, -1));
 			color = ray_color(ray);
-			printf("P3\n%d %d\n255\n", size_x, size_y);
+			write_color(color);
 		}
 	}
 	return (0);

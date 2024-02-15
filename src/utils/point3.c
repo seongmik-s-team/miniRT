@@ -6,11 +6,11 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:58:48 by jooahn            #+#    #+#             */
-/*   Updated: 2024/01/26 15:50:07 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/15 09:22:37 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "point3.h"
+#include "vector3.h"
 
 t_point3	point3(t_coordinate x, t_coordinate y, t_coordinate z)
 {

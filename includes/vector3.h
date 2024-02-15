@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 13:21:37 by jooahn            #+#    #+#             */
-/*   Updated: 2024/01/26 15:50:29 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/15 09:23:32 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,16 @@
 # define VECTOR3_H
 
 # include "data.h"
-# include "point3.h"
 
+typedef struct s_point3		t_point3;
 typedef struct s_vector3	t_vector3;
+
+struct					s_point3
+{
+	t_coordinate		x;
+	t_coordinate		y;
+	t_coordinate		z;
+};
 
 struct						s_vector3
 {
@@ -24,6 +31,9 @@ struct						s_vector3
 	t_component				y;
 	t_component				z;
 };
+
+t_point3					point3(t_coordinate x, t_coordinate y, t_coordinate z);
+t_vector3					point3_to_vector3(t_point3 p);
 
 t_vector3					vector3(t_component x, t_component y,
 								t_component z);

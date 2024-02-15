@@ -5,8 +5,5 @@
 		"point3.h": "c",
 		"stdlib.h": "c",
 		"viewport.h": "c"
-	},
-	"[c]": {
-		"editor.defaultFormatter": "keyhr.42-c-format"
 	}
 }

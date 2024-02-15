@@ -6,12 +6,12 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:02:30 by jooahn            #+#    #+#             */
-/*   Updated: 2024/01/26 16:04:11 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/15 09:22:38 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_handler.h"
-#include <mlx.h>
+#include "mlx.h"
 #include <stdlib.h>
 
 int	key_handler(int keycode, t_vars *vars)
