@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 20:29:17 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/16 20:29:58 by jooahn           ###   ########.fr       */
+/*   Created: 2023/03/17 21:52:06 by jooahn            #+#    #+#             */
+/*   Updated: 2023/03/31 19:33:26 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int ac, char **av)
+#include <unistd.h>
+
+int	ft_putchar_fd(char c, int fd)
 {
-	ac++;
-	(void)av;
-	return (0);
+	return (write(fd, &c, 1));
 }

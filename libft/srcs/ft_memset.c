@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 20:29:17 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/16 20:29:58 by jooahn           ###   ########.fr       */
+/*   Created: 2023/03/13 21:09:24 by jooahn            #+#    #+#             */
+/*   Updated: 2023/03/21 03:38:21 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int ac, char **av)
+#include <stddef.h>
+
+void	*ft_memset(void *b, int c, size_t len)
 {
-	ac++;
-	(void)av;
-	return (0);
+	unsigned char	value;
+	size_t			i;
+
+	value = (unsigned char)c;
+	i = 0;
+	while (i < len)
+	{
+		*((unsigned char *)b + i) = value;
+		i++;
+	}
+	return (b);
 }

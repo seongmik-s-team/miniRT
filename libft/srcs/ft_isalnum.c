@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 20:29:17 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/16 20:29:58 by jooahn           ###   ########.fr       */
+/*   Created: 2023/03/22 16:57:32 by jooahn            #+#    #+#             */
+/*   Updated: 2023/03/22 16:57:35 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int ac, char **av)
+#include "libft.h"
+
+int	ft_isalnum(int c)
 {
-	ac++;
-	(void)av;
+	if (ft_isalpha(c) || ft_isdigit(c))
+		return (1);
 	return (0);
 }

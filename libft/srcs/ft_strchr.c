@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 20:29:17 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/16 20:29:58 by jooahn           ###   ########.fr       */
+/*   Created: 2023/03/13 20:48:40 by jooahn            #+#    #+#             */
+/*   Updated: 2023/03/21 03:36:50 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int ac, char **av)
+char	*ft_strchr(const char *s, int c)
 {
-	ac++;
-	(void)av;
+	int	idx;
+
+	idx = 0;
+	while (s[idx])
+	{
+		if (s[idx] == (char)c)
+			return ((char *)(s + idx));
+		idx++;
+	}
+	if ((char)c == 0)
+		return ((char *)(s + idx));
 	return (0);
 }

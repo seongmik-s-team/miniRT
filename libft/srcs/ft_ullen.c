@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_ullen.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 20:29:17 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/16 20:29:58 by jooahn           ###   ########.fr       */
+/*   Created: 2023/03/29 14:42:58 by jooahn            #+#    #+#             */
+/*   Updated: 2023/12/12 22:24:39 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int ac, char **av)
+#include <stddef.h>
+
+int	ft_ullen(size_t n, int base)
 {
-	ac++;
-	(void)av;
-	return (0);
+	int	len;
+
+	len = 0;
+	if (n == 0)
+		return (1);
+	while (n > 0)
+	{
+		n /= base;
+		len++;
+	}
+	return (len);
 }

@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putunbr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 20:29:17 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/16 20:29:58 by jooahn           ###   ########.fr       */
+/*   Created: 2023/03/30 19:22:34 by jooahn            #+#    #+#             */
+/*   Updated: 2023/03/31 20:14:10 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int ac, char **av)
+#include "libft.h"
+
+int	ft_putunbr_fd(unsigned int n, int fd)
 {
-	ac++;
-	(void)av;
-	return (0);
+	char	number[11];
+	int		len;
+
+	len = ft_ullen(n, 10);
+	number[len] = 0;
+	while (--len >= 0)
+	{
+		number[len] = (n % 10) + '0';
+		n /= 10;
+	}
+	return (ft_putstr_fd(number, fd));
 }

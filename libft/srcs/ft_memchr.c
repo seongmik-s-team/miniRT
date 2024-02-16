@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 20:29:17 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/16 20:29:58 by jooahn           ###   ########.fr       */
+/*   Created: 2023/03/13 21:59:31 by jooahn            #+#    #+#             */
+/*   Updated: 2023/03/21 03:33:55 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int ac, char **av)
+#include <stddef.h>
+
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	ac++;
-	(void)av;
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		if (*((unsigned char *)s + i) == (unsigned char)c)
+			return ((void *)((unsigned char *)s + i));
+		i++;
+	}
 	return (0);
 }

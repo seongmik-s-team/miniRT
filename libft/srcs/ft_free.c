@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 20:29:17 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/16 20:29:58 by jooahn           ###   ########.fr       */
+/*   Created: 2023/10/20 23:44:25 by jooahn            #+#    #+#             */
+/*   Updated: 2023/10/20 23:46:36 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int ac, char **av)
+#include <stdlib.h>
+
+void	ft_free(void **ptr)
 {
-	ac++;
-	(void)av;
-	return (0);
+	if (*ptr != NULL)
+		free(*ptr);
+	*ptr = NULL;
+	return ;
+}
+
+void	two_d_free(void **p)
+{
+	int	idx;
+
+	idx = 0;
+	while (p[idx])
+	{
+		free(p[idx]);
+		idx++;
+	}
+	free(p);
 }

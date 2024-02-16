@@ -1,47 +1,45 @@
-NAME	=	miniRT
+#--------------------------------default flags---------------------------------#
+NAME							=	miniRT
+CC								=	cc
+CFLAGS							=	-Wall -Wextra -Werror
 
-#
-# SRCS and OBJS
-#
 
-SRCS	=	\
-			src/main.c \
-			src/utils/camera.c \
-			src/utils/color.c \
-			src/utils/point3.c \
-			src/utils/ray.c \
-			src/utils/vector3_1.c \
-			src/utils/vector3_2.c \
-			src/utils/viewport.c
+#----------------------------------sources-------------------------------------#
+INCLUDES 						:=	-I./includes
+SRCS_DIR 						:=	srcs
+SRCS							:=	$(SRCS_DIR)/main.c
 
-OBJS = $(SRCS:%.c=%.o)
 
-#
-# Compiler and flags
-#
+#----------------------------------objects-------------------------------------#
+OBJS 							:=	$(SRCS:.c=.o)
 
-CC		=	cc
-CFLAGS	=	-Wall -Werror -Wextra
-CLIB	=	-Lmlx -lmlx -framework OpenGL -framework Appkit -Imlx
-INC		=	./includes
-MLX		=	./mlx
 
-#
-# Rules
-#
+#-----------------------------------rules--------------------------------------#
+all : $(NAME)
 
-all		: $(NAME)
+$(NAME) : $(OBJS)
+	@rm -rf $@
+	@echo "Compiling..."
+	@$(CC) $(CFLAGS) -o $@ $^
+	@echo "Done !"
 
-%.o	:%.c
-	$(CC) $(CFLAGS)  -c $< -o $@
+%.o : %.c
+	@echo "Compiling $<..."
+	@$(CC) $(CFLAGS) -c $^ -o $@
+	@echo "Done !"
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -I$(INC) -I$(MLX) $(SRCS) -o $(NAME)
+clean :
+	@echo "Cleaning Objects..."
+	@rm -rf $(OBJS)
+	@echo "Done !"
 
-clean	:
-	rm -rf $(OBJS)
+fclean : clean
+	@echo "Cleaning..."
+	@rm -rf $(NAME)
+	@echo "Done !"
 
-fclean	: clean
-	rm -rf	$(NAME)
+re : fclean all
 
-re		: fclean all
+
+#-----------------------------------phony--------------------------------------#
+.PHONY: all clean fclean re

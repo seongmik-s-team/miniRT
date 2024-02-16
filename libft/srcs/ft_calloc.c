@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 20:29:17 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/16 20:29:58 by jooahn           ###   ########.fr       */
+/*   Created: 2023/03/15 05:00:33 by jooahn            #+#    #+#             */
+/*   Updated: 2024/02/16 19:54:14 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int ac, char **av)
+#include "libft.h"
+#include <stdlib.h>
+
+void	*ft_calloc(size_t size)
 {
-	ac++;
-	(void)av;
-	return (0);
+	void	*pointer;
+
+	pointer = (void *)malloc(size);
+	if (!pointer)
+		exit(EXIT_FAILURE);
+	ft_bzero(pointer, size);
+	return (pointer);
 }
