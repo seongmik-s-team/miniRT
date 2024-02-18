@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_node_idx.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ahn <ahn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:51:26 by jooahn            #+#    #+#             */
-/*   Updated: 2023/11/16 14:14:38 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/18 16:21:16 by ahn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+// node index반환. 없을 시 -1 반환
 int	ft_get_node_idx(t_list *list, t_node *target)
 {
 	t_node	*node;

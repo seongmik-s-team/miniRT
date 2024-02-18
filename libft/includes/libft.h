@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ahn <ahn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:59:31 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/16 19:52:38 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/18 16:51:12 by ahn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,6 @@ void	ft_list_append_front(t_list *list, t_node *new);
 int		ft_list_is_empty(t_list *list);
 void	ft_del_node(t_node *node, void (*del)(void *));
 void	ft_del_node_and_link(t_list *list, t_node *target, void (*del)(void *));
-void	ft_free_list(t_list *list);
-void	ft_free_list_with_content(t_list *list);
 int		ft_get_node_idx(t_list *list, t_node *target);
 void	ft_insert_list_at(t_list *base, t_list *insert, int at);
 void	ft_replace_node_with_list(t_list *base, t_list *sub, t_node *node);
@@ -141,8 +139,8 @@ char	*get_next_line(int fd);
 char	*ft_strcat(char *s, char *buffer, ssize_t size);
 ssize_t	ft_strchr_idx(char *s, char c, size_t offset);
 
-void	two_d_free(void **p);
-void	ft_free(void **ptr);
+void	ft_free(void *p);
+void	ft_free2(void **p);
 
 void	ft_none(void *p);
 

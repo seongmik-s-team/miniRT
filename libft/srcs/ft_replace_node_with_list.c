@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_replace_node_with_list.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ahn <ahn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:01:58 by jooahn            #+#    #+#             */
-/*   Updated: 2023/11/16 16:20:39 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/18 16:55:32 by ahn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	link_list_at_node(t_list *base, t_list *sub, t_node *node);
 
+// node를 sub list로 대체
 void	ft_replace_node_with_list(t_list *base, t_list *sub, t_node *node)
 {
 	if (!base || !sub)

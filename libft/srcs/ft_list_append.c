@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list_append.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ahn <ahn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:02:30 by jooahn            #+#    #+#             */
-/*   Updated: 2023/11/17 16:02:52 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/18 16:49:10 by ahn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+// list의 뒤에 요소 삽입
 void	ft_list_append(t_list *list, t_node *new)
 {
 	if (!(list->head) || !(list->tail))
