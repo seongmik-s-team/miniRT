@@ -7,6 +7,7 @@ CFLAGS							=	-Wall -Wextra -Werror
 #----------------------------------sources-------------------------------------#
 INCLUDES 						:=	-I./includes
 SRCS_DIR 						:=	srcs
+LIB_DIR							:=	libft
 SRCS							:=	$(SRCS_DIR)/main.c
 
 
@@ -20,7 +21,10 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	@rm -rf $@
 	@echo "Compiling..."
-	@$(CC) $(CFLAGS) -o $@ $^
+	@$(MAKE) -C $(LIB_DIR);
+	@cp $(LIB_DIR)/libft.a libft.a
+	@$(CC) $(CFLAGS) -o $@ $^ libft.a
+	@rm libft.a
 	@echo "Done !"
 
 %.o : %.c
@@ -30,11 +34,14 @@ $(NAME) : $(OBJS)
 
 clean :
 	@echo "Cleaning Objects..."
+	@$(MAKE) -C $(LIB_DIR) clean;
+	@rm -rf libft.a
 	@rm -rf $(OBJS)
 	@echo "Done !"
 
 fclean : clean
 	@echo "Cleaning..."
+	@$(MAKE) -C $(LIB_DIR) fclean;
 	@rm -rf $(NAME)
 	@echo "Done !"
 

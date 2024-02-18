@@ -40,17 +40,17 @@ OBJS = $(addprefix $(OBJS_DIR)/, $(OBJS_FILE))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $@ $^
+	@ar rc $@ $^
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	cc $(CFLAGS) -I$(INC) -c $< -o $@
+	@cc $(CFLAGS) -I$(INC) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re:
-	make fclean
-	make all
+	@make fclean
+	@make all

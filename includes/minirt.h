@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 20:29:17 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/18 20:38:08 by seongmik         ###   ########.fr       */
+/*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
+/*   Updated: 2024/02/18 20:37:55 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#ifndef MINIRT_H
+# define MINIRT_H
 
-int	main(int argc, char **argv)
-{
-	argc++;
-	(void)argv;
-	return (0);
-}
+# include <stdio.h>
+# include <mlx.h>
+
+#endif
