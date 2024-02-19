@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
-#    Updated: 2024/02/19 19:28:48 by seongmik         ###   ########.fr        #
+#    Updated: 2024/02/19 20:03:19 by jooahn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS_DIR 					:=	srcs
 LIB_DIR						:=	libft
 MLX_DIR						:=	mlx
 DIRS						:=	$(LIB_DIR) $(MLX_DIR)
-SRCS						:=	$(SRCS_DIR)/main.c
+SRCS						:=	$(SRCS_DIR)/minirt.c \
+								$(SRCS_DIR)/parser/parser.c
 MLX_FLAGS					:=	-Lmlx -lmlx -framework OpenGL -framework Appkit
 LIBFT						:=	libft.a
 MLX							:=	libmlx.dylib
