@@ -21,7 +21,7 @@ ft_list_iter.c ft_list_clear.c\
 ft_listget.c ft_new_list.c\
 ft_list_is_empty.c ft_list_pop.c \
 ft_del_node.c ft_del_node_and_link.c \
-ft_get_node_idx.c ft_insert_list_at.c \
+ft_get_node_idx.c \
 ft_replace_node_with_list.c \
 ft_list_to_ptr.c \
 \
