@@ -6,12 +6,11 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:03:30 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/19 19:12:52 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/19 19:30:43 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
-#include "../libft/includes/libft.h"
+#include "minirt.h"
 
 // 생성자 : 파라미터 생성
 t_vec3	*new_vec3(double x, double y, double z)

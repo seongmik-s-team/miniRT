@@ -6,12 +6,11 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:11:36 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/19 19:27:22 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/19 19:30:36 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
-#include "../libft/includes/libft.h"
+#include "minirt.h"
 
 t_vec3	vadd(t_vec3 lv, t_vec3 rv)
 {

@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/19 19:22:48 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/19 19:30:29 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdio.h>
 # include <mlx.h>
+
+# include "libft.h"
 
 typedef t_vec3	t_point;
 typedef t_vec3	t_color;
