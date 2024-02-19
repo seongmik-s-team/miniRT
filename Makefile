@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/19 18:45:27 by seongmik          #+#    #+#              #
-#    Updated: 2024/02/19 18:45:53 by seongmik         ###   ########.fr        #
+#    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
+#    Updated: 2024/02/19 19:28:48 by seongmik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS						=	-Wall -Wextra -Werror
 
 
 #----------------------------------sources-------------------------------------#
-INCLUDES 					:=	-I./includes
+INCLUDES 					:=	-I./includes -I./libft/includes
 SRCS_DIR 					:=	srcs
 LIB_DIR						:=	libft
 MLX_DIR						:=	mlx
@@ -45,12 +45,11 @@ $(NAME) : $(OBJS)
 	@cp $(MLX_DIR)/$(MLX) $(MLX)
 	@$(CC) $(CFLAGS) -o $@ $^ $(LIBFT) $(MLX_FLAGS)
 	@rm $(LIBFT)
-	@rm $(MLX)
 	@echo "Done !"
 
 %.o : %.c
 	@echo "Compiling $<..."
-	@$(CC) $(CFLAGS) -c $^ -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $^ -o $@
 	@echo "Done !"
 
 clean :
@@ -60,7 +59,6 @@ clean :
 		$(MAKE) -C $$d clean; \
 	done
 	@rm -rf $(LIBFT)
-	@rm -rf $(MLX)
 	@rm -rf $(OBJS)
 	@echo "Done !"
 
@@ -68,6 +66,7 @@ fclean : clean
 	@echo "Cleaning..."
 	@$(MAKE) -C $(LIB_DIR) fclean;
 	@rm -rf $(NAME)
+	@rm -rf $(MLX)
 	@echo "Done !"
 
 re : fclean all
