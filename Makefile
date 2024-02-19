@@ -1,22 +1,34 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/19 18:45:27 by seongmik          #+#    #+#              #
+#    Updated: 2024/02/19 18:45:53 by seongmik         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #--------------------------------default flags---------------------------------#
-NAME							=	miniRT
-CC								=	cc
-CFLAGS							=	-Wall -Wextra -Werror
+NAME						=	miniRT
+CC							=	cc
+CFLAGS						=	-Wall -Wextra -Werror
 
 
 #----------------------------------sources-------------------------------------#
-INCLUDES 						:=	-I./includes
-SRCS_DIR 						:=	srcs
-LIB_DIR							:=	libft
-MLX_DIR							:=	mlx
-DIRS							:=	$(LIB_DIR) $(MLX_DIR)
-SRCS							:=	$(SRCS_DIR)/main.c
-MLX_FLAGS						:=	-Lmlx -lmlx -framework OpenGL -framework Appkit
-LIBFT							:=	libft.a
-MLX								:=	libmlx.dylib
+INCLUDES 					:=	-I./includes
+SRCS_DIR 					:=	srcs
+LIB_DIR						:=	libft
+MLX_DIR						:=	mlx
+DIRS						:=	$(LIB_DIR) $(MLX_DIR)
+SRCS						:=	$(SRCS_DIR)/main.c
+MLX_FLAGS					:=	-Lmlx -lmlx -framework OpenGL -framework Appkit
+LIBFT						:=	libft.a
+MLX							:=	libmlx.dylib
 
 #----------------------------------objects-------------------------------------#
-OBJS 							:=	$(SRCS:.c=.o)
+OBJS 						:=	$(SRCS:.c=.o)
 
 
 #-----------------------------------rules--------------------------------------#
