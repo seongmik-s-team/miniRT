@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+         #
+#    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
-#    Updated: 2024/02/19 20:03:19 by jooahn           ###   ########.fr        #
+#    Updated: 2024/02/19 21:54:13 by seongmik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,21 @@ INCLUDES 					:=	-I./includes -I./libft/includes
 SRCS_DIR 					:=	srcs
 LIB_DIR						:=	libft
 MLX_DIR						:=	mlx
+OBJ_DIR						:=	object
+VECTOR_DIR					:=	vector
+COLOR_DIR					:=	color
+MR_MLX_DIR					:=	mlx
+PARSER_DIR					:=	parser
 DIRS						:=	$(LIB_DIR) $(MLX_DIR)
 SRCS						:=	$(SRCS_DIR)/minirt.c \
-								$(SRCS_DIR)/parser/parser.c
+								$(SRCS_DIR)/$(OBJ_DIR)/object.c \
+								$(SRCS_DIR)/$(VECTOR_DIR)/vec_new.c \
+								$(SRCS_DIR)/$(VECTOR_DIR)/vec_oper_basic.c \
+								$(SRCS_DIR)/$(VECTOR_DIR)/vec_oper_linear_a.c \
+								$(SRCS_DIR)/$(MR_MLX_DIR)/mr_mlx.c \
+								$(SRCS_DIR)/$(MR_MLX_DIR)/hooks.c \
+								$(SRCS_DIR)/$(PARSER_DIR)/parser.c
+								
 MLX_FLAGS					:=	-Lmlx -lmlx -framework OpenGL -framework Appkit
 LIBFT						:=	libft.a
 MLX							:=	libmlx.dylib
