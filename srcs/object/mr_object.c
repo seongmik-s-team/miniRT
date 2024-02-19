@@ -1,46 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   mr_object.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/19 19:22:48 by seongmik         ###   ########.fr       */
+/*   Created: 2024/02/19 19:01:13 by seongmik          #+#    #+#             */
+/*   Updated: 2024/02/19 19:03:14 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "../../includes/minirt.h"
 
-# include <stdio.h>
-# include <mlx.h>
-
-typedef t_vec3	t_point;
-typedef t_vec3	t_color;
-typedef t_vec3	t_ray;
-
-typedef struct s_vec3
+t_object	*new_object()
 {
-	double	x;
-	double	y;
-	double	z;
-}				t_vec3;
-
-enum e_object_type
-{
-	SPHERE,
-	PLANE,
-	SQUARE,
-	CYLINDER,
-	TRIANGLE
-};
-
-typedef struct s_object
-{
-	t_point				*position;
-	enum e_object_type	type;
-	void				*obj;
-}				t_object;
-
-#endif
+	
+}
