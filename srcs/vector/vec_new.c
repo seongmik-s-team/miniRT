@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:03:30 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/19 19:30:43 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/19 19:45:22 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_vec3	*new_vec3(double x, double y, double z)
 }
 
 // 생성자 : 복사 생성
-t_vec3	*new_vec3(t_vec3 *origin)
+t_vec3	*copy_vec3(t_vec3 *origin)
 {
 	t_vec3	*new_vec3;
 

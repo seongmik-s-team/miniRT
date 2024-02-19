@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.c                                           :+:      :+:    :+:   */
+/*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 19:29:32 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/19 20:28:51 by seongmik         ###   ########.fr       */
+/*   Created: 2024/02/19 19:01:13 by seongmik          #+#    #+#             */
+/*   Updated: 2024/02/19 20:00:18 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(int argc, char *argv[])
+// 생성자 : 파라미터 생성자
+t_object	*new_object(t_point3 *position, enum e_object_type type, void *obj)
 {
-	t_scene	scene;
+	t_object	*new_obj;
 
-	if (argc != 3)
-		return (FAILURE);
-	scene.width = ft_atoi(argv[1]);
-	scene.height = ft_atoi(argv[2]);
-	mr_mlx_init(&scene);
-	return (SUCCESS);
+	new_obj = (t_object *)ft_calloc(sizeof(t_object));
+	new_obj->position = position;
+	new_obj->type = type;
+	new_obj->obj = obj;
+	return (obj);
 }
