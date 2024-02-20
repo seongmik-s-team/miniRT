@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:09:04 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/19 20:54:35 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/20 21:05:42 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,19 @@ int	to_hex(t_rgb rgb)
 
 void	draw_screen(t_scene *scene, t_mlx_ptrs *ptrs)
 {
-	int	i;
-	int	j;
+	t_ray		ray;
+	int			i;
+	int			j;
 
 	i = 0;
 	while (i < scene->height)
 	{
 		j = 0;
+		ray = ray_primary(scene->camera, j / (double)scene->width, \
+							(scene->height - i) / (double)scene->height);
 		while (j < scene->width)
 		{
-			mlx_pixel_put(ptrs->mlx, ptrs->win, j, i, 0x00FFFFFF);
+			mlx_pixel_put(ptrs->mlx, ptrs->win, j, i, ray_color(scene, ray));
 			j++;
 		}
 		i++;

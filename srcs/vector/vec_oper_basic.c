@@ -6,13 +6,13 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:11:36 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/19 19:30:36 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:24:46 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vec3	vadd(t_vec3 lv, t_vec3 rv)
+t_vec3	vplus(t_vec3 lv, t_vec3 rv)
 {
 	t_vec3	ret;
 
@@ -22,7 +22,7 @@ t_vec3	vadd(t_vec3 lv, t_vec3 rv)
 	return (ret);
 }
 
-t_vec3	vsub(t_vec3 lv, t_vec3 rv)
+t_vec3	vminus(t_vec3 lv, t_vec3 rv)
 {
 	t_vec3	ret;
 

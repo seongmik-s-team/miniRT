@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_clear.c                                    :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 16:03:43 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/20 20:22:29 by seongmik         ###   ########.fr       */
+/*   Created: 2024/02/20 16:43:40 by seongmik          #+#    #+#             */
+/*   Updated: 2024/02/20 17:17:38 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minirt.h"
 
-// del : node의 content에 적용할 함수
-void	ft_list_clear(t_list *list, void (*del)(void *))
+// color 파라미터 생성자
+t_color3	new_color3(double x, double y, double z)
 {
-	t_node	*node;
-	t_node	*temp;
+	t_color3	new_color;
 
-	if (list == 0)
-		return ;
-	node = list->head;
-	while (node)
-	{
-		temp = node->next;
-		del(node->content);
-		free(node);
-		node = temp;
-	}
-	free(list);
-	list = 0;
+	new_color.x = x;
+	new_color.y = y;
+	new_color.z = z;
+	return (new_color);
 }

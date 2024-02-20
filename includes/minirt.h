@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/19 21:52:21 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/20 21:25:58 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,29 +47,54 @@ typedef struct s_rgb
 	int		b;
 }				t_rgb;
 
-enum					e_object_type
+enum e_object_type
 {
 	SPHERE,
 	PLANE,
-	SQUARE,
-	CYLINDER,
-	TRIANGLE
+	CYLINDER
 };
 
 typedef struct s_object
 {
-	t_vec3				*position;
 	enum e_object_type	type;
 	void				*obj;
-}						t_object;
+}				t_object;
 
-/********************************** parser ************************************/
-void					parser(char *argv);
+typedef struct s_sphere
+{
+	t_point3	center; // 구의 중심 좌표
+	double		diameter; // 구의 반지름
+	t_color3	color; // RGB 색상 [0-1]
+}				t_sphere;
+
+typedef struct s_ray
+{
+	t_point3	origin;
+	t_vec3		direction;
+}				t_ray;
+
+typedef struct s_camera
+{
+	t_point3	origin; // 카메라의 좌표(카메라의 원점)
+	t_vec3		ov; // orientation vector (카메라가 바라보고 있는 방향을 나타내는 단위벡터)
+	double		viewport_height; // 뷰포트 높이
+	double		viewport_width; // 뷰포트 너비
+	double		focal_length; // 바라보는 시점의 평면과의 거리
+	t_vec3		horizontal; // 뷰포트의 수직 벡터 (0, 0, viewport_width)
+	t_vec3		vertical; // 뷰포트의 수평 벡터 (0, viewport_height, 0)
+	t_vec3		lower_left; // 뷰포트의 왼쪽 아래 점
+	int			fov; // Field of view (시야각)
+}				t_camera;
 
 typedef struct s_scene
 {
-	int		width;
-	int		height;
+	int			width;
+	int			height;
+	double		aspect_ratio; // 종횡비 (스크린 가로 길이 / 세로 길이)
+	t_camera	camera; // 카메라
+	double		ambient; // 주변광
+	t_list		*lights; // 라이트 리스트
+	t_list		*objs; // 오브젝트 리스트
 }				t_scene;
 
 typedef struct s_mlx_ptrs
@@ -78,22 +103,47 @@ typedef struct s_mlx_ptrs
 	void	*win;
 }				t_mlx_ptrs;
 
+/********************************** parser ************************************/
+void					parser(char *argv);
+
 /*********************************** mlx **************************************/
-void					mr_mlx_init(t_scene *t_scene);
+void					mr_mlx_init(t_scene *scene);
 int						key_hook(int keycode, t_mlx_ptrs *ptrs);
 int						exit_hook(t_mlx_ptrs *ptrs);
 
+/*********************************** hit **************************************/
+t_bool					hit(t_scene *scene, t_node *objs, t_ray ray);
+t_bool					type_hit(t_scene *scene, t_object *obj, t_ray ray);
+t_bool					hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray);
+
+/*********************************** ray **************************************/
+t_ray					ray_primary(t_camera cam, double x, double y);
+int						ray_color(t_scene *scene, t_ray ray);
+
+/********************************** color *************************************/
+t_color3				new_color3(double x, double y, double z);
+t_rgb					to_rgb(t_color3 color);
+int						to_hex(t_rgb rgb);
+int						sky_color(t_ray ray);
+
 /********************************** object ************************************/
-t_object				*new_object(t_point3 *position, \
-									enum e_object_type type, void *obj);
+t_object				*new_object(enum e_object_type type, void *obj);
+
+/********************************** sphere ************************************/
+t_sphere				*new_sphere(t_point3 center, double diameter, \
+									t_color3 color);
+t_bool					hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray);
+/********************************** scene *************************************/
+void					scene_init(t_scene *scene, char **argv);
+
+/********************************** point *************************************/
+t_point3				new_point3(double x, double y, double z);
 
 /********************************** vector ************************************/
-
-t_vec3					*new_vec3(double x, double y, double z);
-t_vec3					*copy_vec3(t_vec3 *origin);
-
-t_vec3					vadd(t_vec3 lv, t_vec3 rv);
-t_vec3					vsub(t_vec3 lv, t_vec3 rv);
+t_vec3					new_vec3(double x, double y, double z);
+t_vec3					copy_vec3(t_vec3 *origin);
+t_vec3					vplus(t_vec3 lv, t_vec3 rv);
+t_vec3					vminus(t_vec3 lv, t_vec3 rv);
 t_vec3					vdiv(t_vec3 v, double value);
 t_vec3					vmult(t_vec3 v, double value);
 double					vdot(t_vec3 lv, t_vec3 rv);
