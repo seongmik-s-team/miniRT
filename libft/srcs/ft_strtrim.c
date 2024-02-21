@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 01:07:22 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/16 19:56:30 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/20 19:33:22 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		is_set[256];
 	char	*result;
 
+	if (!s1 || !set)
+		return (NULL);
 	init_set(is_set, set);
 	begin = 0;
 	while (is_set[(unsigned char)s1[begin]])
