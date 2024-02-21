@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:27:47 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/19 21:40:40 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/20 23:01:33 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,28 @@
 
 static t_bool	check_argv(char *argv);
 static t_bool	check_ext(char *filename, char *ext);
-static void		pexit(const char *msg);
 
-void	parser(char *argv)
+void	parser(char *argv, t_scene *scene)
 {
-	int	fd;
+	int		fd;
+	char	*line;
+	char	**datas;
 
-	// char	*line;
 	if (check_argv(argv) == FALSE)
-		pexit("The file extension is not .rt");
+		pexit("[Parsing Error] The file extension is not .rt");
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
-		pexit("file open failed");
-	// line = get_next_line(fd);
-	// while (line)
-	// {
-	// 	line = get_next_line(fd);
-	// }
+		pexit("[Parsing Error] file open failed");
+	line = get_trimmed_line(fd);
+	while (line)
+	{
+		datas = ft_split(line, ' ');
+		add_to_scene(scene, datas);
+		free(line);
+		ft_split_free(datas);
+		line = get_trimmed_line(fd);
+	}
 	close(fd);
-}
-
-static void	pexit(const char *msg)
-{
-	perror(msg);
-	exit(FAILURE);
 }
 
 static t_bool	check_argv(char *argv)

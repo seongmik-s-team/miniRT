@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
-#    Updated: 2024/02/20 21:08:00 by seongmik         ###   ########.fr        #
+#    Updated: 2024/02/20 23:05:50 by jooahn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #--------------------------------default flags---------------------------------#
 NAME						=	miniRT
 CC							=	cc
-CFLAGS						=	-Wall -Wextra -Werror
+CFLAGS						=
 
 
 #----------------------------------sources-------------------------------------#
@@ -30,9 +30,13 @@ RAY_DIR						:=	ray
 SPHERE_DIR					:=	sphere
 MR_MLX_DIR					:=	mlx
 PARSER_DIR					:=	parser
+ERROR_DIR					:=	error
 DIRS						:=	$(LIB_DIR) $(MLX_DIR)
 SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(OBJ_DIR)/object.c \
+								$(SRCS_DIR)/$(OBJ_DIR)/sphere.c \
+								$(SRCS_DIR)/$(OBJ_DIR)/plane.c \
+								$(SRCS_DIR)/$(OBJ_DIR)/cylinder.c \
 								$(SRCS_DIR)/$(VECTOR_DIR)/vec_new.c \
 								$(SRCS_DIR)/$(VECTOR_DIR)/vec_oper_basic.c \
 								$(SRCS_DIR)/$(VECTOR_DIR)/vec_oper_linear_a.c \
@@ -44,7 +48,12 @@ SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(HIT_DIR)/hit.c \
 								$(SRCS_DIR)/$(SPHERE_DIR)/sphere.c \
 								$(SRCS_DIR)/$(PARSER_DIR)/parser.c
-								
+								$(SRCS_DIR)/$(PARSER_DIR)/add_to_scene.c \
+								$(SRCS_DIR)/$(PARSER_DIR)/utils.c \
+								$(SRCS_DIR)/$(PARSER_DIR)/utils2.c \
+								$(SRCS_DIR)/$(ERROR_DIR)/error.c
+
+
 MLX_FLAGS					:=	-Lmlx -lmlx -framework OpenGL -framework Appkit
 LIBFT						:=	libft.a
 MLX							:=	libmlx.dylib
