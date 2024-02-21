@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+         #
+#    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
-#    Updated: 2024/02/20 23:05:50 by jooahn           ###   ########.fr        #
+#    Updated: 2024/02/21 17:49:43 by seongmik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #--------------------------------default flags---------------------------------#
 NAME						=	miniRT
 CC							=	cc
-CFLAGS						=
+CFLAGS						=	-Wall -Wextra -Werror
 
 
 #----------------------------------sources-------------------------------------#
@@ -28,15 +28,13 @@ SCENE_DIR					:=	scene
 HIT_DIR						:=	hit
 RAY_DIR						:=	ray
 SPHERE_DIR					:=	sphere
+CYLINDER_DIR				:=	cylinder
+PLANE_DIR					:=	plane
 MR_MLX_DIR					:=	mlx
 PARSER_DIR					:=	parser
 ERROR_DIR					:=	error
 DIRS						:=	$(LIB_DIR) $(MLX_DIR)
 SRCS						:=	$(SRCS_DIR)/minirt.c \
-								$(SRCS_DIR)/$(OBJ_DIR)/object.c \
-								$(SRCS_DIR)/$(OBJ_DIR)/sphere.c \
-								$(SRCS_DIR)/$(OBJ_DIR)/plane.c \
-								$(SRCS_DIR)/$(OBJ_DIR)/cylinder.c \
 								$(SRCS_DIR)/$(VECTOR_DIR)/vec_new.c \
 								$(SRCS_DIR)/$(VECTOR_DIR)/vec_oper_basic.c \
 								$(SRCS_DIR)/$(VECTOR_DIR)/vec_oper_linear_a.c \
@@ -46,8 +44,11 @@ SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(RAY_DIR)/ray.c \
 								$(SRCS_DIR)/$(SCENE_DIR)/scene.c \
 								$(SRCS_DIR)/$(HIT_DIR)/hit.c \
+								$(SRCS_DIR)/$(OBJ_DIR)/object.c \
+								$(SRCS_DIR)/$(PLANE_DIR)/plane.c \
+								$(SRCS_DIR)/$(SPHERE_DIR)/cylinder.c \
 								$(SRCS_DIR)/$(SPHERE_DIR)/sphere.c \
-								$(SRCS_DIR)/$(PARSER_DIR)/parser.c
+								$(SRCS_DIR)/$(PARSER_DIR)/parser.c \
 								$(SRCS_DIR)/$(PARSER_DIR)/add_to_scene.c \
 								$(SRCS_DIR)/$(PARSER_DIR)/utils.c \
 								$(SRCS_DIR)/$(PARSER_DIR)/utils2.c \

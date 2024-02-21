@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   add_to_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:44:47 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/21 16:44:29 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/21 17:47:48 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 static t_ambient	new_ambient(char **datas);
-static t_camera		new_camera(char **datas);
+static t_camera		new_camera(t_scene *scene, char **datas);
 static t_light		*new_light(char **datas);
 
 void	add_to_scene(t_scene *scene, char **datas)
@@ -26,11 +26,11 @@ void	add_to_scene(t_scene *scene, char **datas)
 	if (ft_str_is_same(id, "A"))
 		scene->ambient = new_ambient(datas);
 	else if (ft_str_is_same(id, "C"))
-		scene->camera = new_camera(datas);
+		scene->camera = new_camera(scene, datas);
 	else if (ft_str_is_same(id, "L"))
-		ft_list_append(scene->light_list, ft_new_node(new_light(datas)));
+		ft_list_append(scene->lights, ft_new_node(new_light(datas)));
 	else if (is_object(id))
-		ft_list_append(scene->object_list, ft_new_node(new_object(datas)));
+		ft_list_append(scene->objs, ft_new_node(new_object(datas)));
 	else
 		pexit("[Parsing Error] Invalid identifier");
 }
@@ -48,16 +48,23 @@ static t_ambient	new_ambient(char **datas)
 }
 
 // 동적할당 X
-static t_camera	new_camera(char **datas)
+static t_camera	new_camera(t_scene *scene, char **datas)
 {
-	t_camera	camera;
+	t_camera	cam;
 
 	if (get_arr_size(datas) != 4)
 		pexit("[Parsing Error] Invalid number of camera data");
-	camera.origin = str_to_point3(datas[1], ',');
-	camera.ov = str_to_vec3(datas[2], ',');
-	camera.fov = ft_strtod(datas[3]);
-	return (camera);
+	cam.origin = str_to_point3(datas[1], ',');
+	cam.ov = str_to_vec3(datas[2], ',');
+	cam.fov = ft_strtod(datas[3]);
+	cam.viewport_height = (double)scene->height;
+	cam.viewport_width = scene->aspect_ratio * cam.viewport_height;
+	cam.focal_length = 1.0;
+	cam.horizontal = new_vec3(cam.viewport_width, 0, 0);
+	cam.vertical = new_vec3(0, cam.viewport_height, 0);
+	cam.lower_left = vminus(vminus(vminus(cam.origin, vdiv(cam.horizontal, 2)), \
+					vdiv(cam.vertical, 2)), new_vec3(0, 0, cam.focal_length));
+	return (cam);
 }
 
 // 동적할당 O, 사용 후 del_light 호출 필수
@@ -65,7 +72,7 @@ static t_light	*new_light(char **datas)
 {
 	t_light	*light;
 
-	if (get_arr_size(datas) != 3)
+	if (get_arr_size(datas) < 3 || 4 < get_arr_size(datas))
 		pexit("[Parsing Error] Invalid number of light data");
 	light = (t_light *)ft_calloc(sizeof(t_light));
 	light->point = str_to_point3(datas[1], ',');

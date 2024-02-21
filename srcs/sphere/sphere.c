@@ -6,19 +6,22 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:03:35 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/21 14:28:49 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/21 17:40:48 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_sphere	*new_sphere(t_point3 center, double diameter, t_color3 color)
+// 동적할당 O, 사용 후 del_sphere 호출
+t_sphere	*new_sphere(char **datas)
 {
-	t_sphere	*sphere;
+	t_sphere	*sp;
 
-	sphere = (t_sphere *)ft_calloc(sizeof(t_sphere));
-	sphere->center = center;
-	sphere->diameter = diameter;
-	sphere->color = color;
-	return (sphere);
+	if (get_arr_size(datas) != 4)
+		pexit("[Parsing Error] Invalid number of sphere data");
+	sp = (t_sphere *)ft_calloc(sizeof(t_sphere));
+	sp->center = str_to_point3(datas[1], ',');
+	sp->diameter = ft_strtod(datas[2]);
+	sp->color = to_color3(str_to_rgb(datas[3], ','));
+	return (sp);
 }
