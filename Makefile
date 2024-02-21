@@ -6,7 +6,7 @@
 #    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
-#    Updated: 2024/02/21 17:49:43 by seongmik         ###   ########.fr        #
+#    Updated: 2024/02/21 17:56:12 by seongmik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(HIT_DIR)/hit.c \
 								$(SRCS_DIR)/$(OBJ_DIR)/object.c \
 								$(SRCS_DIR)/$(PLANE_DIR)/plane.c \
-								$(SRCS_DIR)/$(SPHERE_DIR)/cylinder.c \
+								$(SRCS_DIR)/$(CYLINDER_DIR)/cylinder.c \
 								$(SRCS_DIR)/$(SPHERE_DIR)/sphere.c \
 								$(SRCS_DIR)/$(PARSER_DIR)/parser.c \
 								$(SRCS_DIR)/$(PARSER_DIR)/add_to_scene.c \

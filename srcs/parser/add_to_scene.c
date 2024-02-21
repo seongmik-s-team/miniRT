@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:44:47 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/21 17:47:48 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:06:29 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static t_camera	new_camera(t_scene *scene, char **datas)
 	cam.origin = str_to_point3(datas[1], ',');
 	cam.ov = str_to_vec3(datas[2], ',');
 	cam.fov = ft_strtod(datas[3]);
-	cam.viewport_height = (double)scene->height;
+	cam.viewport_height = 2.0;
 	cam.viewport_width = scene->aspect_ratio * cam.viewport_height;
 	cam.focal_length = 1.0;
 	cam.horizontal = new_vec3(cam.viewport_width, 0, 0);
