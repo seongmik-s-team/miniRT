@@ -6,7 +6,7 @@
 #    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
-#    Updated: 2024/02/21 21:49:18 by seongmik         ###   ########.fr        #
+#    Updated: 2024/02/21 22:44:52 by seongmik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ RAY_DIR						:=	ray
 SPHERE_DIR					:=	sphere
 CYLINDER_DIR				:=	cylinder
 PLANE_DIR					:=	plane
+LIGHT_DIR					:=	light
 MR_MLX_DIR					:=	mlx
 PARSER_DIR					:=	parser
 ERROR_DIR					:=	error
@@ -42,6 +43,7 @@ SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(MR_MLX_DIR)/hooks.c \
 								$(SRCS_DIR)/$(COLOR_DIR)/color.c \
 								$(SRCS_DIR)/$(RAY_DIR)/ray.c \
+								$(SRCS_DIR)/$(LIGHT_DIR)/light.c \
 								$(SRCS_DIR)/$(SCENE_DIR)/scene.c \
 								$(SRCS_DIR)/$(HIT_DIR)/hit.c \
 								$(SRCS_DIR)/$(OBJ_DIR)/object.c \

@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:44:47 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/21 21:49:36 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:11:20 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static t_ambient	new_ambient(char **datas);
 static t_camera		new_camera(t_scene *scene, char **datas);
-static t_light		new_light(char **datas);
 
 void	add_to_scene(t_scene *scene, char **datas)
 {
@@ -65,15 +64,4 @@ static t_camera	new_camera(t_scene *scene, char **datas)
 	cam.lower_left = vminus(vminus(vminus(cam.origin, vdiv(cam.horizontal, 2)),
 				vdiv(cam.vertical, 2)), new_vec3(0, 0, cam.focal_length));
 	return (cam);
-}
-
-static t_light	new_light(char **datas)
-{
-	t_light	light;
-
-	if (get_arr_size(datas) < 3 || 4 < get_arr_size(datas))
-		pexit("[Parsing Error] Invalid number of light data");
-	light.point = str_to_point3(datas[1], ',');
-	light.ratio = ft_strtod(datas[2]);
-	return (light);
 }

@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/21 21:45:47 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:45:09 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,10 @@ void					scene_init(t_scene *scene);
 
 /********************************** point *************************************/
 t_point3				new_point3(double x, double y, double z);
+
+/********************************** light *************************************/
+t_light					new_light(char **datas);
+t_color3				lighting(t_light light, t_point3 spot, t_vec3 nv);
 
 /********************************** vector ************************************/
 t_vec3					new_vec3(double x, double y, double z);
