@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 22:10:30 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/21 22:45:32 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/22 00:14:29 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_color3	lighting(t_light light, t_point3 spot, t_vec3 nv)
 
 	(void)nv;
 	lv = vunit(vminus(light.point, spot));
+	(void)lv;
 	// 두 벡터가 이루는 각도 계산해서 빛의 값을 구한다.
 	lighted = new_vec3(1, 1, 1);
 	return (lighted);
