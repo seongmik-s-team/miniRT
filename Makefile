@@ -6,7 +6,7 @@
 #    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
-#    Updated: 2024/02/21 22:44:52 by seongmik         ###   ########.fr        #
+#    Updated: 2024/02/22 00:12:52 by seongmik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS						=	-Wall -Wextra -Werror
 
 
 #----------------------------------sources-------------------------------------#
-INCLUDES 					:=	-I./includes -I./libft/includes
+INCLUDES 					:=	-I./includes -I./libft/includes -I./mlx
 SRCS_DIR 					:=	srcs
 LIB_DIR						:=	libft
 MLX_DIR						:=	mlx
