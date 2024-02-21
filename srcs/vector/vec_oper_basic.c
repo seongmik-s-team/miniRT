@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:11:36 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/20 19:24:46 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/21 21:35:39 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,26 @@ t_vec3	vplus(t_vec3 lv, t_vec3 rv)
 	ret.x = lv.x + rv.x;
 	ret.y = lv.y + rv.y;
 	ret.z = lv.z + rv.z;
+	return (ret);
+}
+
+t_vec3	cplus(t_vec3 lv, t_vec3 rv)
+{
+	t_vec3	ret;
+
+	ret = vplus(lv, rv);
+	if (1.0 < ret.x)
+		ret.x = 1;
+	if (1.0 < ret.y)
+		ret.y = 1;
+	if (1.0 < ret.z)
+		ret.z = 1;
+	if (ret.x < 0.0)
+		ret.x = 0;
+	if (ret.y < 0.0)
+		ret.y = 0;
+	if (ret.z < 0.0)
+		ret.z = 0;
 	return (ret);
 }
 
