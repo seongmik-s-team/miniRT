@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/21 16:38:21 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/21 17:42:19 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,49 +86,50 @@ typedef struct s_camera
 	double		fov; // Field of view (시야각)
 }				t_camera;
 
+typedef struct s_mlx_ptrs
+{
+	void		*mlx;
+	void		*win;
+}						t_mlx_ptrs;
+
+typedef struct s_ambient
+{
+	double		ratio;   // 조명빛의 세기 비율 [0.0, 1.0]
+	t_color3	color; // 조명색 (RGB) [0, 1]
+}						t_ambient;
+
 typedef struct s_scene
 {
 	int			width;
 	int			height;
 	double		aspect_ratio; // 종횡비 (스크린 가로 길이 / 세로 길이)
 	t_camera	camera; // 카메라
-	t_ambient ambient;   // 주변광
+	t_ambient	ambient;   // 주변광
 	t_list		*lights; // 라이트 리스트
 	t_list		*objs; // 오브젝트 리스트
 }				t_scene;
 
-typedef struct s_mlx_ptrs
-{
-	void				*mlx;
-	void				*win;
-}						t_mlx_ptrs;
-
-typedef struct s_ambient
-{
-	double ratio;   // 조명빛의 세기 비율 [0.0, 1.0]
-	t_color3 color; // 조명색 (RGB) [0, 1]
-}						t_ambient;
 
 typedef struct s_light
 {
-	t_point3 point; // 빛의 좌표
-	double ratio;   // 빛의 밝기 비율 [0.0, 1.0]
+	t_point3	point; // 빛의 좌표
+	double		ratio;   // 빛의 밝기 비율 [0.0, 1.0]
 }						t_light;
 
 typedef struct s_plane
 {
-	t_point3 center; // 평면의 중심 좌표
-	t_vec3 axis;     // 평면의 방향 벡터 [-1,1]
-	t_color3 color;  // RGB 색상 [0-1]
+	t_point3	center; // 평면의 중심 좌표
+	t_vec3		axis;     // 평면의 방향 벡터 [-1,1]
+	t_color3	color;  // RGB 색상 [0-1]
 }						t_plane;
 
 typedef struct s_cylinder
 {
-	t_point3 center; // 원기둥의 중심 좌표
-	t_vec3 axis;     // 원기둥의 방향 벡터 [-1,1]
-	double diameter; // 반지름
-	double height;   // 높이
-	t_color3 color;  // RGB 색상 [0-1]
+	t_point3	center; // 원기둥의 중심 좌표
+	t_vec3		axis;     // 원기둥의 방향 벡터 [-1,1]
+	double		diameter; // 반지름
+	double		height;   // 높이
+	t_color3	color;  // RGB 색상 [0-1]
 }						t_cylinder;
 
 /********************************** parser ************************************/
@@ -145,16 +146,8 @@ t_vec3					str_to_vec3(char *str, char sep);
 t_rgb					str_to_rgb(char *str, char sep);
 t_point3				str_to_point3(char *str, char sep);
 
-/****************************** temp **********************************/
-t_color3				new_color3(double x, double y, double z);
-t_point3				new_point3(double x, double y, double z);
-t_color3				to_color3(t_rgb rgb);
-
 /*********************************** error ************************************/
 void					pexit(const char *msg);
-
-/********************************** parser ************************************/
-void					parser(char *argv);
 
 /*********************************** mlx **************************************/
 void					mr_mlx_init(t_scene *scene);
@@ -175,22 +168,20 @@ t_color3				new_color3(double x, double y, double z);
 t_rgb					to_rgb(t_color3 color);
 int						to_hex(t_rgb rgb);
 int						sky_color(t_ray ray);
+t_color3				to_color3(t_rgb rgb);
 
 /********************************** object ************************************/
-t_object				*new_object(enum e_object_type type, void *obj);
 t_object				*new_object(char **datas);
 t_plane					*new_plane(char **datas);
 t_cylinder				*new_cylinder(char **datas);
 t_bool					is_object(char *id);
 
 /********************************** sphere ************************************/
-t_sphere				*new_sphere(t_point3 center, double diameter, \
-									t_color3 color);
 t_sphere				*new_sphere(char **datas);
 t_bool					hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray);
 
 /********************************** scene *************************************/
-void					scene_init(t_scene *scene, char **argv);
+void					scene_init(t_scene *scene);
 
 /********************************** point *************************************/
 t_point3				new_point3(double x, double y, double z);
