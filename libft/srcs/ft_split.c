@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:19 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/16 19:56:00 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/20 16:21:14 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 static char	*get_word(char const *s, char c);
 static int	get_word_cnt(char const *s, char c);
-static char	**free_arr(char **arr, int len);
 
 char	**ft_split(char const *s, char c)
 {
@@ -32,13 +31,10 @@ char	**ft_split(char const *s, char c)
 		while (*s && (*s == c))
 			s++;
 		word = get_word(s, c);
-		if (!word)
-			return (free_arr(result, i));
 		result[i] = word;
 		s += ft_strlen(word);
 		i++;
 	}
-	result[word_cnt] = 0;
 	return (result);
 }
 
@@ -96,18 +92,4 @@ static int	get_word_cnt(char const *s, char c)
 		i++;
 	}
 	return (cnt);
-}
-
-static char	**free_arr(char **arr, int cnt)
-{
-	int	i;
-
-	i = 0;
-	while (i < cnt)
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-	return ((char **)0);
 }
