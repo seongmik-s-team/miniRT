@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 21:15:28 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/20 21:27:32 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:47:01 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	sky_color(t_ray ray)
 int	ray_color(t_scene *scene, t_ray ray)
 {
 	if (hit(scene, scene->objs->head, ray))
-		return (to_hex(to_rgb(new_color3(ray.direction.x, ray.direction.y, ray.direction.z))));
+		return (to_hex(to_rgb(new_color3(\
+				ray.direction.x, ray.direction.y, ray.direction.z))));
 	return (sky_color(ray));
 }
