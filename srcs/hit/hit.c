@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:12:59 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/21 15:00:51 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/21 21:35:56 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ t_bool	type_hit(t_scene *scene, t_object *obj, t_ray ray)
 
 t_bool	hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray)
 {
-	t_vec3		oc; //방향벡터로 나타낸 구의 중심.
-	//a, b, c는 각각 t에 관한 2차 방정식의 계수
-	double		a; 
-	double		b;
-	double		c;
-	double		discriminant; //판별식
+	double	a;
+	double	b;
+	double	c;
 
+	t_vec3 oc; //방향벡터로 나타낸 구의 중심.
+	// a, b, c는 각각 t에 관한 2차 방정식의 계수
+	double discriminant; //판별식
 	(void)scene;
 	oc = vminus(ray.origin, sphere->center);
 	a = vdot(ray.direction, ray.direction);
@@ -50,5 +50,10 @@ t_bool	hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray)
 	// discriminant 는 판별식
 	discriminant = (b * b) - (4.0 * a * c);
 	// 판별식이 0보다 크다면 광선이 구를 hit한 것!
+	if (discriminant > 0) // hit 했다면 sphere의 색이 광선의 색이다.
+	{
+		scene->rec.color = cplus(sphere->color, vmult(scene->ambient.color,
+					scene->ambient.ratio));
+	}
 	return (discriminant > 0);
 }

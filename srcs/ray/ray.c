@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 21:15:28 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/21 18:14:54 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:19:05 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int	sky_color(t_ray ray)
 int	ray_color(t_scene *scene, t_ray ray)
 {
 	if (hit(scene, scene->objs->head, ray))
-		return (to_hex(to_rgb(((t_sphere *)((t_object *)(scene->objs->head->content))->obj)->color)));
+		return (to_hex(to_rgb(scene->rec.color)));
 	return (sky_color(ray));
 }
