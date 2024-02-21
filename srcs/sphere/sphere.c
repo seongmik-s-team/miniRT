@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_clear.c                                    :+:      :+:    :+:   */
+/*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 16:03:43 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/20 20:22:29 by seongmik         ###   ########.fr       */
+/*   Created: 2024/02/20 20:03:35 by seongmik          #+#    #+#             */
+/*   Updated: 2024/02/21 14:28:49 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minirt.h"
 
-// del : node의 content에 적용할 함수
-void	ft_list_clear(t_list *list, void (*del)(void *))
+t_sphere	*new_sphere(t_point3 center, double diameter, t_color3 color)
 {
-	t_node	*node;
-	t_node	*temp;
+	t_sphere	*sphere;
 
-	if (list == 0)
-		return ;
-	node = list->head;
-	while (node)
-	{
-		temp = node->next;
-		del(node->content);
-		free(node);
-		node = temp;
-	}
-	free(list);
-	list = 0;
+	sphere = (t_sphere *)ft_calloc(sizeof(t_sphere));
+	sphere->center = center;
+	sphere->diameter = diameter;
+	sphere->color = color;
+	return (sphere);
 }

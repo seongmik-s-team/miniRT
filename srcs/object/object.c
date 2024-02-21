@@ -28,6 +28,17 @@ t_object	*new_object(char **datas)
 	return (new_obj);
 }
 
+// 생성자 : 파라미터 생성자
+t_object	*new_object(enum e_object_type type, void *obj)
+{
+	t_object	*new_obj;
+
+	new_obj = (t_object *)ft_calloc(sizeof(t_object));
+	new_obj->type = type;
+	new_obj->obj = obj;
+	return (new_obj);
+}
+
 t_bool	is_object(char *id)
 {
 	if (get_obj_type(id) == SPHERE)

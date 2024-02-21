@@ -24,6 +24,10 @@ MLX_DIR						:=	mlx
 OBJ_DIR						:=	object
 VECTOR_DIR					:=	vector
 COLOR_DIR					:=	color
+SCENE_DIR					:=	scene
+HIT_DIR						:=	hit
+RAY_DIR						:=	ray
+SPHERE_DIR					:=	sphere
 MR_MLX_DIR					:=	mlx
 PARSER_DIR					:=	parser
 ERROR_DIR					:=	error
@@ -38,7 +42,12 @@ SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(VECTOR_DIR)/vec_oper_linear_a.c \
 								$(SRCS_DIR)/$(MR_MLX_DIR)/mr_mlx.c \
 								$(SRCS_DIR)/$(MR_MLX_DIR)/hooks.c \
-								$(SRCS_DIR)/$(PARSER_DIR)/parser.c \
+								$(SRCS_DIR)/$(COLOR_DIR)/color.c \
+								$(SRCS_DIR)/$(RAY_DIR)/ray.c \
+								$(SRCS_DIR)/$(SCENE_DIR)/scene.c \
+								$(SRCS_DIR)/$(HIT_DIR)/hit.c \
+								$(SRCS_DIR)/$(SPHERE_DIR)/sphere.c \
+								$(SRCS_DIR)/$(PARSER_DIR)/parser.c
 								$(SRCS_DIR)/$(PARSER_DIR)/add_to_scene.c \
 								$(SRCS_DIR)/$(PARSER_DIR)/utils.c \
 								$(SRCS_DIR)/$(PARSER_DIR)/utils2.c \
