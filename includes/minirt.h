@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
 /*   Updated: 2024/02/22 21:04:44 by seongmik         ###   ########.fr       */
@@ -151,6 +151,10 @@ char					*get_trimmed_line(int fd);
 t_vec3					str_to_vec3(char *str, char sep);
 t_rgb					str_to_rgb(char *str, char sep);
 t_point3				str_to_point3(char *str, char sep);
+t_bool					is_rgb(t_rgb rgb);
+double					validate_ratio(double ratio);
+t_vec3					validate_uvec(t_vec3 uvec);
+double					validate_fov(double fov);
 
 /*********************************** error ************************************/
 void					pexit(const char *msg);

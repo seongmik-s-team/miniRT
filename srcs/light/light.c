@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 22:10:30 by seongmik          #+#    #+#             */
 /*   Updated: 2024/02/22 16:32:20 by seongmik         ###   ########.fr       */
@@ -19,7 +19,9 @@ t_light	new_light(char **datas)
 	if (get_arr_size(datas) < 3 || 4 < get_arr_size(datas))
 		pexit("[Parsing Error] Invalid number of light data");
 	light.point = str_to_point3(datas[1], ',');
-	light.ratio = ft_strtod(datas[2]);
+	light.ratio = validate_ratio(ft_strtod(datas[2]));
+	if (datas[3])
+		str_to_rgb(datas[3], ',');
 	return (light);
 }
 

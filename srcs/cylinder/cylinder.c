@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:58:02 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/21 16:48:57 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/22 17:35:59 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_cylinder	*new_cylinder(char **datas)
 		pexit("[Parsing Error] Invalid number of cylinder data");
 	cy = (t_cylinder *)ft_calloc(sizeof(t_cylinder));
 	cy->center = str_to_point3(datas[1], ',');
-	cy->axis = str_to_vec3(datas[2], ',');
+	cy->axis = validate_uvec(str_to_vec3(datas[2], ','));
 	cy->diameter = ft_strtod(datas[3]);
 	cy->height = ft_strtod(datas[4]);
 	cy->color = to_color3(str_to_rgb(datas[5], ','));

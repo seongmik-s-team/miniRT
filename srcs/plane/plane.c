@@ -21,7 +21,7 @@ t_plane	*new_plane(char **datas)
 		pexit("[Parsing Error] Invalid number of plane data");
 	pl = (t_plane *)ft_calloc(sizeof(t_plane));
 	pl->center = str_to_point3(datas[1], ',');
-	pl->axis = str_to_vec3(datas[2], ',');
+	pl->axis = validate_uvec(str_to_vec3(datas[2], ','));
 	pl->color = to_color3(str_to_rgb(datas[3], ','));
 	return (pl);
 }
