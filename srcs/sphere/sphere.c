@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:03:35 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/21 17:40:48 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:04:35 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_sphere	*new_sphere(char **datas)
 		pexit("[Parsing Error] Invalid number of sphere data");
 	sp = (t_sphere *)ft_calloc(sizeof(t_sphere));
 	sp->center = str_to_point3(datas[1], ',');
-	sp->diameter = ft_strtod(datas[2]);
+	sp->diameter = ft_strtod(datas[2]) / 2.0;
 	sp->color = to_color3(str_to_rgb(datas[3], ','));
 	return (sp);
 }

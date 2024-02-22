@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:27:47 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/20 23:01:33 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/22 17:47:13 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ void	parser(char *argv, t_scene *scene)
 	line = get_trimmed_line(fd);
 	while (line)
 	{
+		if (ft_strlen(line) == 0)
+		{
+			free(line);
+			line = get_trimmed_line(fd);
+			continue ;
+		}
 		datas = ft_split(line, ' ');
 		add_to_scene(scene, datas);
 		free(line);
