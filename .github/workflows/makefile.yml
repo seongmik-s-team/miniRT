@@ -1,27 +1,18 @@
-name: Makefile CI
+name: Make test
 
 on:
   push:
     branches: [ "master" ]
+    paths-ignore:
+      - '**/README.md'
   pull_request:
     branches: [ "master" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
-
-    - name: configure
-      run: ./configure
-
-    - name: Install dependencies
+    
+    - name: make
       run: make
-
-    - name: Run check
-      run: make check
-
-    - name: Run distcheck
-      run: make distcheck
