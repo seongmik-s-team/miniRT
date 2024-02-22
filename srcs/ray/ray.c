@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 21:15:28 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/21 19:19:05 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:10:55 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,21 @@ t_ray	ray_primary(t_camera cam, double x, double y)
 	t_ray	ray;
 
 	ray.origin = cam.origin; // 광선의 시작점은 카메라의 위치
-	ray.direction = vunit(vminus(vplus(vplus(cam.lower_left, \
-			vmult(cam.horizontal, x)), vmult(cam.vertical, y)), cam.origin));
+	ray.direction = vunit(vminus(vplus(vplus(cam.lower_left,
+						vmult(cam.horizontal, x)), vmult(cam.vertical, y)),
+				cam.origin));
 	return (ray);
 }
 
 // y 좌표의 높이에 따라 선형적으로 파란색과 흰색을 섞습니다
 int	sky_color(t_ray ray)
 {
-	double		sky_blue;
+	double	sky_blue;
 
-	sky_blue = 0.4 * (ray.direction.y + 1.0);
-	return (to_hex(to_rgb(\
-				vplus(vmult((t_vec3)new_color3(1, 1, 1), 1.0 - sky_blue), \
-				vmult((t_vec3)new_color3(0.5, 0.7, 1.0), sky_blue)))));
+	sky_blue = 0.8 * (ray.direction.y + 1.0);
+	return (to_hex(to_rgb(vplus(vmult((t_vec3)new_color3(1, 1, 1), 1.0
+						- sky_blue), vmult((t_vec3)new_color3(0.5, 0.7, 1.0),
+						sky_blue)))));
 }
 
 // ray의 색을 결정합니다.
