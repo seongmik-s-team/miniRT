@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/22 20:02:28 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/22 21:04:44 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,9 @@ t_bool					just_hit(void *me, t_node *objs, t_ray ray,
 							t_recoder rec);
 t_bool					just_type_hit(t_object *obj, t_ray ray, t_recoder rec);
 t_bool					just_hit_sphere(t_sphere *sphere, t_ray ray,
+							t_recoder rec);
+t_bool					hit_plane(t_scene *scene, t_plane *plane, t_ray ray);
+t_bool					just_hit_plane(t_plane *plane, t_ray ray,
 							t_recoder rec);
 
 /*********************************** ray **************************************/

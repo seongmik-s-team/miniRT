@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:12:59 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/22 20:14:40 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/22 21:51:41 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_bool	type_hit(t_scene *scene, t_object *obj, t_ray ray)
 {
 	if (obj->type == SPHERE)
 		return (hit_sphere(scene, (t_sphere *)(obj->obj), ray));
+	else if (obj->type == PLANE)
+		return (hit_plane(scene, (t_plane *)(obj->obj), ray));
 	return (FALSE);
 }
 
@@ -105,7 +107,10 @@ t_bool	hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray)
 						shadowed), cmult(sphere->color,
 						vmult(scene->ambient.color, scene->ambient.ratio)));
 			scene->rec.max_len = vlen(vminus(ray.origin, spot));
+			return (TRUE);
 		}
+		else
+			return (FALSE);
 	}
-	return (discriminant > 0);
+	return (FALSE);
 }
