@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/21 22:45:09 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:01:38 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,7 @@ t_vec3					cplus(t_vec3 lv, t_vec3 rv);
 t_vec3					vminus(t_vec3 lv, t_vec3 rv);
 t_vec3					vdiv(t_vec3 v, double value);
 t_vec3					vmult(t_vec3 v, double value);
+t_vec3					cmult(t_vec3 lv, t_vec3 rv);
 double					vdot(t_vec3 lv, t_vec3 rv);
 t_vec3					vcross(t_vec3 lv, t_vec3 rv);
 double					vlen(t_vec3 v);

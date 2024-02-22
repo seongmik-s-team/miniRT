@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:09:04 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/21 16:49:47 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:10:20 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ t_rgb	to_rgb(t_color3 color)
 
 int	to_hex(t_rgb rgb)
 {
-	return ((rgb.r * (2 << 16)) + (rgb.g * (2 << 8)) + (rgb.b));
+	return ((rgb.r * (1 << 16)) + (rgb.g * (1 << 8)) + (rgb.b));
 }
 
 void	draw_screen(t_scene *scene, t_mlx_ptrs *ptrs)
 {
-	t_ray		ray;
-	int			i;
-	int			j;
+	t_ray	ray;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (i < scene->height)
@@ -39,7 +39,7 @@ void	draw_screen(t_scene *scene, t_mlx_ptrs *ptrs)
 		j = 0;
 		while (j < scene->width)
 		{
-			ray = ray_primary(scene->camera, (double)j / (double)scene->width, \
+			ray = ray_primary(scene->camera, (double)j / (double)scene->width,
 					(double)(scene->height - i) / (double)scene->height);
 			mlx_pixel_put(ptrs->mlx, ptrs->win, j, i, ray_color(scene, ray));
 			j++;
@@ -53,8 +53,7 @@ void	mr_mlx_init(t_scene *scene)
 	t_mlx_ptrs	ptrs;
 
 	ptrs.mlx = mlx_init();
-	ptrs.win = mlx_new_window(ptrs.mlx, scene->width, scene->height, \
-								"miniRT");
+	ptrs.win = mlx_new_window(ptrs.mlx, scene->width, scene->height, "miniRT");
 	mlx_key_hook(ptrs.win, key_hook, &ptrs);
 	mlx_hook(ptrs.win, EXIT_BUTTON, 0, exit_hook, &ptrs);
 	draw_screen(scene, &ptrs);
