@@ -6,7 +6,11 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 22:10:30 by seongmik          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/02/22 15:58:26 by seongmik         ###   ########.fr       */
+=======
+/*   Updated: 2024/02/22 00:14:29 by seongmik         ###   ########.fr       */
+>>>>>>> 6b8ceba70f55b50c2979de488dab7cba6f94cb43
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +45,16 @@ t_color3	lighting(t_light light, t_point3 spot, t_vec3 nv)
 	double		cos_theta;
 
 	lv = vunit(vminus(light.point, spot));
+<<<<<<< HEAD
 	cos_theta = vdot(lv, nv) / (vlen(lv) * vlen(nv));
 	// 두 벡터가 이루는 각도를 계산해서 빛의 값을 구한다.
 	if (cos_theta <= 0) // 빛과 법선이 이루는 각이 90도 이상이면 빛이 비추지 않는다.
 		cos_theta = 0.0;
 	return (vmult(new_vec3(1, 1, 1), light.ratio * cos_theta));
+=======
+	(void)lv;
+	// 두 벡터가 이루는 각도 계산해서 빛의 값을 구한다.
+	lighted = new_vec3(1, 1, 1);
+	return (lighted);
+>>>>>>> 6b8ceba70f55b50c2979de488dab7cba6f94cb43
 }
