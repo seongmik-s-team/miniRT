@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:44:47 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/22 13:57:25 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/22 17:35:12 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_ambient	new_ambient(char **datas)
 
 	if (get_arr_size(datas) != 3)
 		pexit("[Parsing Error] Invalid number of ambient data");
-	ambient.ratio = ft_strtod(datas[1]);
+	ambient.ratio = validate_ratio(ft_strtod(datas[1]));
 	ambient.color = to_color3(str_to_rgb(datas[2], ','));
 	return (ambient);
 }
@@ -55,8 +55,8 @@ static t_camera	new_camera(t_scene *scene, char **datas)
 	if (get_arr_size(datas) != 4)
 		pexit("[Parsing Error] Invalid number of camera data");
 	cam.origin = str_to_point3(datas[1], ',');
-	cam.ov = str_to_vec3(datas[2], ',');
-	cam.fov = ft_strtod(datas[3]);
+	cam.ov = validate_uvec(str_to_vec3(datas[2], ','));
+	cam.fov = validate_fov(ft_strtod(datas[3]));
 	cam.viewport_height = 1.5;
 	cam.viewport_width = scene->aspect_ratio * cam.viewport_height;
 	cam.focal_length = cal_focal_length(cam.viewport_width, cam.fov);

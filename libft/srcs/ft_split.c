@@ -6,15 +6,16 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:45:19 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/20 16:21:14 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/22 17:11:00 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-static char	*get_word(char const *s, char c);
-static int	get_word_cnt(char const *s, char c);
+static char	*get_word(char const *s, char sep);
+static int	get_word_cnt(char const *s, char sep);
+static int	is_sep(char c, char sep);
 
 char	**ft_split(char const *s, char c)
 {
@@ -28,7 +29,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	while (i < word_cnt)
 	{
-		while (*s && (*s == c))
+		while (*s && (is_sep(*s, c)))
 			s++;
 		word = get_word(s, c);
 		result[i] = word;
@@ -51,14 +52,14 @@ void	ft_split_free(char **s)
 	free(s);
 }
 
-static char	*get_word(char const *s, char c)
+static char	*get_word(char const *s, char sep)
 {
 	char	*word;
 	size_t	len;
 	size_t	i;
 
 	i = 0;
-	while (s[i] && (s[i] != c))
+	while (s[i] && (!is_sep(s[i], sep)))
 		i++;
 	len = i;
 	word = (char *)ft_calloc(sizeof(char) * (len + 1));
@@ -71,7 +72,7 @@ static char	*get_word(char const *s, char c)
 	return (word);
 }
 
-static int	get_word_cnt(char const *s, char c)
+static int	get_word_cnt(char const *s, char sep)
 {
 	int		cnt;
 	size_t	i;
@@ -82,14 +83,21 @@ static int	get_word_cnt(char const *s, char c)
 	flag = 1;
 	while (s[i])
 	{
-		if ((s[i] != c) && flag)
+		if ((!is_sep(s[i], sep)) && flag)
 		{
 			cnt++;
 			flag = 0;
 		}
-		else if ((s[i] == c) && !flag)
+		else if ((is_sep(s[i], sep)) && !flag)
 			flag = 1;
 		i++;
 	}
 	return (cnt);
+}
+
+static int	is_sep(char c, char sep)
+{
+	if (ft_isspace(c) || c == sep)
+		return (1);
+	return (0);
 }

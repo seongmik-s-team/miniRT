@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:57:33 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/21 16:47:54 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/22 17:35:48 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_plane	*new_plane(char **datas)
 		pexit("[Parsing Error] Invalid number of plane data");
 	pl = (t_plane *)ft_calloc(sizeof(t_plane));
 	pl->center = str_to_point3(datas[1], ',');
-	pl->axis = str_to_vec3(datas[2], ',');
+	pl->axis = validate_uvec(str_to_vec3(datas[2], ','));
 	pl->color = to_color3(str_to_rgb(datas[3], ','));
 	return (pl);
 }
