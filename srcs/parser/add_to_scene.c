@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_to_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:44:47 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/21 22:11:20 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/22 13:57:25 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static t_ambient	new_ambient(char **datas);
 static t_camera		new_camera(t_scene *scene, char **datas);
+static double		cal_focal_length(double vp_width, double fov);
 
 void	add_to_scene(t_scene *scene, char **datas)
 {
@@ -58,10 +59,20 @@ static t_camera	new_camera(t_scene *scene, char **datas)
 	cam.fov = ft_strtod(datas[3]);
 	cam.viewport_height = 1.5;
 	cam.viewport_width = scene->aspect_ratio * cam.viewport_height;
-	cam.focal_length = 1.0;
+	cam.focal_length = cal_focal_length(cam.viewport_width, cam.fov);
 	cam.horizontal = new_vec3(cam.viewport_width, 0, 0);
 	cam.vertical = new_vec3(0, cam.viewport_height, 0);
 	cam.lower_left = vminus(vminus(vminus(cam.origin, vdiv(cam.horizontal, 2)),
-				vdiv(cam.vertical, 2)), new_vec3(0, 0, cam.focal_length));
+			vdiv(cam.vertical, 2)), new_vec3(0, 0, cam.focal_length));
 	return (cam);
+}
+
+static double	cal_focal_length(double vp_width, double fov)
+{
+	double	fl;
+
+	// focal_length = (뷰표트 width / 2) * (tan(fov / 2))
+	// M_PI / 180은 도 단위를 라디안 단위로 변환하는 식
+	fl = vp_width / (2 * tan((fov * M_PI / 180.0) / 2.0));
+	return (fl);
 }
