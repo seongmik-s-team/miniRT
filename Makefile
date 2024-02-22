@@ -6,7 +6,7 @@
 #    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
-#    Updated: 2024/02/22 00:12:52 by seongmik         ###   ########.fr        #
+#    Updated: 2024/02/22 16:47:24 by seongmik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,10 @@ SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(COLOR_DIR)/color.c \
 								$(SRCS_DIR)/$(RAY_DIR)/ray.c \
 								$(SRCS_DIR)/$(LIGHT_DIR)/light.c \
+								$(SRCS_DIR)/$(LIGHT_DIR)/shadow.c \
 								$(SRCS_DIR)/$(SCENE_DIR)/scene.c \
 								$(SRCS_DIR)/$(HIT_DIR)/hit.c \
+								$(SRCS_DIR)/$(HIT_DIR)/just_hit.c \
 								$(SRCS_DIR)/$(OBJ_DIR)/object.c \
 								$(SRCS_DIR)/$(PLANE_DIR)/plane.c \
 								$(SRCS_DIR)/$(CYLINDER_DIR)/cylinder.c \

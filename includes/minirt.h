@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/22 15:01:38 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/22 20:02:28 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_sphere
 
 typedef struct s_recoder
 {
+	double				max_len;
 	t_color3			color;
 }						t_recoder;
 
@@ -163,6 +164,12 @@ int						exit_hook(t_mlx_ptrs *ptrs);
 t_bool					hit(t_scene *scene, t_node *objs, t_ray ray);
 t_bool					type_hit(t_scene *scene, t_object *obj, t_ray ray);
 t_bool					hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray);
+t_point3				hit_spot(t_sphere *sphere, t_ray ray);
+t_bool					just_hit(void *me, t_node *objs, t_ray ray,
+							t_recoder rec);
+t_bool					just_type_hit(t_object *obj, t_ray ray, t_recoder rec);
+t_bool					just_hit_sphere(t_sphere *sphere, t_ray ray,
+							t_recoder rec);
 
 /*********************************** ray **************************************/
 t_ray					ray_primary(t_camera cam, double x, double y);
@@ -190,6 +197,10 @@ void					scene_init(t_scene *scene);
 
 /********************************** point *************************************/
 t_point3				new_point3(double x, double y, double z);
+
+/********************************* shadow *************************************/
+t_color3				shadow(t_scene *scene, void *me, t_light light,
+							t_point3 spot);
 
 /********************************** light *************************************/
 t_light					new_light(char **datas);
