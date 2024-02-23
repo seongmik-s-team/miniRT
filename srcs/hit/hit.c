@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:12:59 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/22 21:51:41 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/23 15:15:10 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,15 @@
 t_bool	hit(t_scene *scene, t_node *objs, t_ray ray)
 {
 	t_object	*obj;
-	t_recoder	ori_rec;
 	t_bool		is_hit;
 
 	scene->rec.max_len = 100000000;
-	ori_rec = scene->rec;
+	is_hit = FALSE;
 	while (objs)
 	{
 		obj = (t_object *)objs->content;
 		if (type_hit(scene, obj, ray))
 			is_hit = TRUE;
-		if (is_hit && ori_rec.max_len > scene->rec.max_len)
-			ori_rec = scene->rec;
 		objs = objs->next;
 	}
 	return (is_hit);

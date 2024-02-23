@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_to_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:44:47 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/22 17:35:12 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/23 17:09:35 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,17 @@ static t_camera	new_camera(t_scene *scene, char **datas)
 	if (get_arr_size(datas) != 4)
 		pexit("[Parsing Error] Invalid number of camera data");
 	cam.origin = str_to_point3(datas[1], ',');
-	cam.ov = validate_uvec(str_to_vec3(datas[2], ','));
+	cam.ov = vunit(validate_uvec(str_to_vec3(datas[2], ',')));
 	cam.fov = validate_fov(ft_strtod(datas[3]));
 	cam.viewport_height = 1.5;
 	cam.viewport_width = scene->aspect_ratio * cam.viewport_height;
 	cam.focal_length = cal_focal_length(cam.viewport_width, cam.fov);
-	cam.horizontal = new_vec3(cam.viewport_width, 0, 0);
-	cam.vertical = new_vec3(0, cam.viewport_height, 0);
+	cam.horizontal = vmult(vunit(vcross(new_vec3(0, 1, 0), cam.ov)),
+			cam.viewport_width);
+	cam.vertical = vmult(vunit(vcross(cam.ov, cam.horizontal)),
+			-cam.viewport_height);
 	cam.lower_left = vminus(vminus(vminus(cam.origin, vdiv(cam.horizontal, 2)),
-			vdiv(cam.vertical, 2)), new_vec3(0, 0, cam.focal_length));
+				vdiv(cam.vertical, 2)), vmult(cam.ov, cam.focal_length));
 	return (cam);
 }
 
