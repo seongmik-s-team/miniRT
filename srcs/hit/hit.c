@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:12:59 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/23 15:15:10 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:44:30 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ t_bool	hit(t_scene *scene, t_node *objs, t_ray ray)
 	t_object	*obj;
 	t_bool		is_hit;
 
-	scene->rec.max_len = 100000000;
+	scene->rec.color = new_color3(0, 0, 0);
+	scene->rec.max_len = 2147483647;
 	is_hit = FALSE;
 	while (objs)
 	{
@@ -46,7 +47,6 @@ t_point3	hit_spot(t_sphere *sphere, t_ray ray)
 	double	c;
 	t_vec3	oc;
 	double	t[2];
-	t_vec3	pt[2];
 
 	oc = vminus(ray.origin, sphere->center);
 	a = vdot(ray.direction, ray.direction);
@@ -54,13 +54,9 @@ t_point3	hit_spot(t_sphere *sphere, t_ray ray)
 	c = vdot(oc, oc) - (sphere->diameter * sphere->diameter);
 	t[0] = (-b + sqrt((b * b) - (4.0 * a * c))) / (2.0 * a);
 	t[1] = (-b - sqrt((b * b) - (4.0 * a * c))) / (2.0 * a);
-	pt[0] = vplus(ray.origin, vmult(ray.direction, t[0]));
-	pt[1] = vplus(ray.origin, vmult(ray.direction, t[1]));
-	// 두 벡터중 더 가까운 벡터를 구한다.
-	if (vlen(pt[0]) < vlen(pt[1]))
-		return (pt[0]);
-	else
-		return (pt[1]);
+	if (t[0] > t[1])
+		t[0] = t[1];
+	return (vplus(ray.origin, vmult(ray.direction, t[0])));
 }
 
 t_bool	hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray)
@@ -97,7 +93,7 @@ t_bool	hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray)
 		lighted = lighting(scene->light, spot, nv);
 		// 그림자 계산
 		shadowed = shadow(scene, sphere, scene->light, spot);
-		if (scene->rec.max_len > vlen(vminus(ray.origin, spot)))
+		if (scene->rec.max_len >= vlen(vminus(ray.origin, spot)))
 		{
 			// 구의 법선벡터와 빛이 이루는 각도로 구한 빛의 세기에 따른 색 (이 빛을 곱해준다.)
 			scene->rec.color = cplus(cmult(cmult(sphere->color, lighted),
