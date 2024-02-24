@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/22 21:04:44 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:29:52 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ t_bool					just_hit_sphere(t_sphere *sphere, t_ray ray,
 t_bool					hit_plane(t_scene *scene, t_plane *plane, t_ray ray);
 t_bool					just_hit_plane(t_plane *plane, t_ray ray,
 							t_recoder rec);
+t_bool					hit_cylinder(t_cylinder *cylinder, t_ray ray);
 
 /*********************************** ray **************************************/
 t_ray					ray_primary(t_camera cam, double x, double y);

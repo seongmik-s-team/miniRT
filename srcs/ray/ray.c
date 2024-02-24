@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 21:15:28 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/22 16:10:55 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:34:00 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_ray	ray_primary(t_camera cam, double x, double y)
 
 	ray.origin = cam.origin; // 광선의 시작점은 카메라의 위치
 	ray.direction = vunit(vminus(vplus(vplus(cam.lower_left,
-						vmult(cam.horizontal, x)), vmult(cam.vertical, y)),
-				cam.origin));
+					vmult(cam.horizontal, x)), vmult(cam.vertical, y)),
+			cam.origin));
 	return (ray);
 }
 
@@ -39,6 +39,7 @@ int	sky_color(t_ray ray)
 int	ray_color(t_scene *scene, t_ray ray)
 {
 	if (hit(scene, scene->objs->head, ray))
-		return (to_hex(to_rgb(scene->rec.color)));
+		// return (to_hex(to_rgb(scene->rec.color)));
+		return (0x00FF0000);
 	return (sky_color(ray));
 }
