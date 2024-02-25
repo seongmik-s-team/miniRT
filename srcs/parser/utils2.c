@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 21:33:25 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/22 17:35:02 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/25 02:02:53 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,7 @@ t_vec3	validate_uvec(t_vec3 uvec)
 		pexit("[Parsing Error] uvec is out of range");
 	if (uvec.z < -1.0 || uvec.z > 1.0)
 		pexit("[Parsing Error] uvec is out of range");
+	if (uvec.x == 0 && uvec.y == 0 && uvec.z == 0)
+		pexit("[Parsing Error] Invalid uvec's data");
 	return (uvec);
 }

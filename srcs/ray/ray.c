@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 21:15:28 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/23 21:34:00 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/24 21:52:37 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	sky_color(t_ray ray)
 int	ray_color(t_scene *scene, t_ray ray)
 {
 	if (hit(scene, scene->objs->head, ray))
-		// return (to_hex(to_rgb(scene->rec.color)));
-		return (0x00FF0000);
+		return (to_hex(to_rgb(scene->rec.color)));
+	// return (0x00FF0000);
 	return (sky_color(ray));
 }

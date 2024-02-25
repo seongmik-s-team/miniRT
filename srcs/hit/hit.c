@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:12:59 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/24 17:31:01 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/24 21:39:24 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_bool	type_hit(t_scene *scene, t_object *obj, t_ray ray)
 	else if (obj->type == PLANE)
 		return (hit_plane(scene, (t_plane *)(obj->obj), ray));
 	else if (obj->type == CYLINDER)
-		return (hit_cylinder((t_cylinder *)(obj->obj), ray));
+		return (hit_cylinder(scene, (t_cylinder *)(obj->obj), ray));
 	return (FALSE);
 }
 
