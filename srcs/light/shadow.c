@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:32:57 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/26 17:20:23 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:22:05 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_bool	inner_self_hit(void *me, t_node *objs, t_ray ray, t_recoder rec,
 					ray.origin)) >= vlen(vminus(((t_sphere *)(obj->obj))->center,
 					light.point)) && vlen(vminus(light.point,
 					((t_sphere *)(obj->obj))->center)) > ((t_sphere *)(obj->obj))->diameter
-			&& just_type_hit(obj, ray, rec))
+			&& just_type_hit(obj, ray, &rec))
 			return (TRUE);
 		objs = objs->next;
 	}
