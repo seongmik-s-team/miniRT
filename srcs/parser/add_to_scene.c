@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:44:47 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/26 17:20:50 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:43:19 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ static t_ambient	new_ambient(char **datas)
 	return (ambient);
 }
 
+t_vec3	safe_new_horizontal(t_vec3 ov, double viewport_width)
+{
+	if (ov.x == 0 && (ov.y == 1 || ov.y == -1) && ov.z == 0)
+		return (vmult(new_vec3(1, 0, 0), viewport_width));
+	return (vmult(vunit(vcross(ov, new_vec3(0, 1, 0))), viewport_width));
+}
+
 // 동적할당 X
 static t_camera	new_camera(t_scene *scene, char **datas)
 {
@@ -60,8 +67,7 @@ static t_camera	new_camera(t_scene *scene, char **datas)
 	cam.viewport_height = 1.5;
 	cam.viewport_width = scene->aspect_ratio * cam.viewport_height;
 	cam.focal_length = cal_focal_length(cam.viewport_width, cam.fov);
-	cam.horizontal = vmult(vunit(vcross(cam.ov, new_vec3(0, 1, 0))),
-			cam.viewport_width);
+	cam.horizontal = safe_new_horizontal(cam.ov, cam.viewport_width);
 	cam.vertical = vmult(vunit(vcross(cam.horizontal, cam.ov)),
 			cam.viewport_height);
 	cam.lower_left = vplus(vplus(vplus(cam.origin, vdiv(cam.horizontal, -2.0)),
