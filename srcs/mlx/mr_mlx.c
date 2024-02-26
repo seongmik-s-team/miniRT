@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mr_mlx.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:09:04 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/22 16:10:20 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:33:35 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw_screen(t_scene *scene, t_mlx_ptrs *ptrs)
 		while (j < scene->width)
 		{
 			ray = ray_primary(scene->camera, (double)j / (double)scene->width,
-					(double)(scene->height - i) / (double)scene->height);
+				(double)(scene->height - i) / (double)scene->height);
 			mlx_pixel_put(ptrs->mlx, ptrs->win, j, i, ray_color(scene, ray));
 			j++;
 		}

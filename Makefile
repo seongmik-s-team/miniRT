@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
-#    Updated: 2024/02/22 16:47:24 by seongmik         ###   ########.fr        #
+#    Updated: 2024/02/26 17:10:22 by jooahn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,9 @@ SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(OBJ_DIR)/object.c \
 								$(SRCS_DIR)/$(PLANE_DIR)/plane.c \
 								$(SRCS_DIR)/$(CYLINDER_DIR)/cylinder.c \
+								$(SRCS_DIR)/$(CYLINDER_DIR)/cylinder_cap.c \
+								$(SRCS_DIR)/$(CYLINDER_DIR)/cylinder_side.c \
+								$(SRCS_DIR)/$(CYLINDER_DIR)/utils.c \
 								$(SRCS_DIR)/$(SPHERE_DIR)/sphere.c \
 								$(SRCS_DIR)/$(PARSER_DIR)/parser.c \
 								$(SRCS_DIR)/$(PARSER_DIR)/add_to_scene.c \
