@@ -1,6 +1,10 @@
 # miniRT
 MiniRT - Raytracing engine written in C
 
+### Mandatory 구현 사진
+<img width="1919" alt="image" src="https://github.com/seongmik-s-team/miniRT/assets/44383895/1a89d2a0-3dd4-4a7b-9af4-c7c70fb269bc">
+
+
 ## Coding Convention
 - commit message 형식 : ex. [MERGE] temp commit
 - issue 제목 형식 : ex. [BUG] leaks 발생 문제
