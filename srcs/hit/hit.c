@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:12:59 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/24 21:39:24 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/26 17:19:40 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_point3	hit_spot(t_sphere *sphere, t_ray ray)
 	c = vdot(oc, oc) - (sphere->diameter * sphere->diameter);
 	t[0] = (-b + sqrt((b * b) - (4.0 * a * c))) / (2.0 * a);
 	t[1] = (-b - sqrt((b * b) - (4.0 * a * c))) / (2.0 * a);
-	if (t[0] > t[1])
+	if (t[0] > t[1] && t[1] >= 0)
 		t[0] = t[1];
 	return (vplus(ray.origin, vmult(ray.direction, t[0])));
 }
@@ -86,12 +86,14 @@ t_bool	hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray)
 	{
 		// 여기서 법선벡터와 spot을 구해서 빛을 곱해준다. (곱해주는 이유는 빛이 없으면 물체는 어두워야하기때문에)
 		spot = hit_spot(sphere, ray);
+		//구의 중심부터 카메라에서 쏜 레이가 hit된 spot으로의 법선벡터
+		nv = vunit(vminus(spot, sphere->center));
+		if (vdot(nv, ray.direction) > 0)
+			nv = vmult(nv, -1);
 		// 구가 Ray의 origin보다 뒤에 있는지 체크한다. 뒤에 있다면 그리지 않는다.
 		if (vdot(vminus(spot, ray.origin), ray.direction) / (vlen(vminus(spot,
 						ray.origin)) * vlen(ray.direction)) < 0)
 			return (FALSE);
-		nv = vunit(vminus(spot, sphere->center));
-		//구의 중심부터 카메라에서 쏜 레이가 hit된 spot으로의 법선벡터
 		lighted = lighting(scene->light, spot, nv);
 		// 그림자 계산
 		shadowed = shadow(scene, sphere, scene->light, spot);
