@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/26 17:19:26 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:27:33 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_recoder
 	double				max_len;
 	t_color3			color;
 	t_point3 p; // ray와 obj의 교점 P의 좌표
+	t_vec3 nv;  // 교점 P에서의 법선벡터
 }						t_recoder;
 
 typedef struct s_ray
@@ -200,7 +201,7 @@ t_bool					just_hit_cylinder(t_cylinder *cy, t_ray ray,
 							t_recoder *rec);
 t_bool					just_hit_cylinder_side(t_cylinder *cy, t_ray ray,
 							t_recoder *rec);
-t_bool					just_hit_cylinder_cap(t_circle cap, t_ray ray,
+t_bool					just_hit_cylinder_cap(t_cylinder *cy, t_ray ray,
 							t_recoder *rec);
 
 /*********************************** ray **************************************/
