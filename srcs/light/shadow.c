@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:32:57 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/26 16:27:20 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:20:23 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ t_color3	shadow(t_scene *scene, void *me, t_light light, t_point3 spot)
 
 	ray.origin = spot;
 	ray.direction = vunit(vminus(light.point, spot));
+	rec.p = scene->rec.p;
 	rec.max_len = vlen(vminus(light.point, spot));
-	ret = just_hit(me, scene->objs->head, ray, rec);
+	ret = just_hit(me, scene->objs->head, ray, &rec);
 	if (!ret && inner_self_hit(me, scene->objs->head, ray, rec, light))
 		ret = TRUE;
 	if (ret)

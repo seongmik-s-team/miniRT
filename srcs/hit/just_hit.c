@@ -6,13 +6,13 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:47:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/26 15:55:19 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:19:45 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_bool	just_hit(void *me, t_node *objs, t_ray ray, t_recoder rec)
+t_bool	just_hit(void *me, t_node *objs, t_ray ray, t_recoder *rec)
 {
 	t_object	*obj;
 
@@ -26,12 +26,14 @@ t_bool	just_hit(void *me, t_node *objs, t_ray ray, t_recoder rec)
 	return (FALSE);
 }
 
-t_bool	just_type_hit(t_object *obj, t_ray ray, t_recoder rec)
+t_bool	just_type_hit(t_object *obj, t_ray ray, t_recoder *rec)
 {
 	if (obj->type == SPHERE)
-		return (just_hit_sphere((t_sphere *)(obj->obj), ray, rec));
+		return (just_hit_sphere((t_sphere *)(obj->obj), ray, *rec));
 	else if (obj->type == PLANE)
-		return (just_hit_plane((t_plane *)(obj->obj), ray, rec));
+		return (just_hit_plane((t_plane *)(obj->obj), ray, *rec));
+	else if (obj->type == CYLINDER)
+		return (just_hit_cylinder((t_cylinder *)(obj->obj), ray, rec));
 	return (FALSE);
 }
 

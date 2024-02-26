@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_oper_linear_a.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:15:39 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/19 20:08:36 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:31:08 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_vec3	vcross(t_vec3 lv, t_vec3 rv)
 	t_vec3	ret;
 
 	ret.x = lv.y * rv.z - lv.z * rv.y;
-	ret.y = lv.x * rv.z - lv.z * rv.x;
+	ret.y = lv.z * rv.x - lv.x * rv.z;
 	ret.z = lv.x * rv.y - lv.y * rv.x;
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:12:59 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/26 15:31:06 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:19:40 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_bool	type_hit(t_scene *scene, t_object *obj, t_ray ray)
 		return (hit_sphere(scene, (t_sphere *)(obj->obj), ray));
 	else if (obj->type == PLANE)
 		return (hit_plane(scene, (t_plane *)(obj->obj), ray));
+	else if (obj->type == CYLINDER)
+		return (hit_cylinder(scene, (t_cylinder *)(obj->obj), ray));
 	return (FALSE);
 }
 
@@ -99,8 +101,8 @@ t_bool	hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray)
 		{
 			// 구의 법선벡터와 빛이 이루는 각도로 구한 빛의 세기에 따른 색 (이 빛을 곱해준다.)
 			scene->rec.color = cplus(cmult(cmult(sphere->color, lighted),
-						shadowed), cmult(sphere->color,
-						vmult(scene->ambient.color, scene->ambient.ratio)));
+					shadowed), cmult(sphere->color, vmult(scene->ambient.color,
+						scene->ambient.ratio)));
 			scene->rec.max_len = vlen(vminus(ray.origin, spot));
 			return (TRUE);
 		}

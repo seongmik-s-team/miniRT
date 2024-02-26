@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:57:33 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/23 22:12:33 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:21:00 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_plane	*new_plane(char **datas)
 		pexit("[Parsing Error] Invalid number of plane data");
 	pl = (t_plane *)ft_calloc(sizeof(t_plane));
 	pl->center = str_to_point3(datas[1], ',');
-	pl->axis = validate_uvec(str_to_vec3(datas[2], ','));
+	pl->axis = vunit(validate_uvec(str_to_vec3(datas[2], ',')));
 	pl->color = to_color3(str_to_rgb(datas[3], ','));
 	return (pl);
 }
@@ -60,8 +60,8 @@ t_bool	hit_plane(t_scene *scene, t_plane *plane, t_ray ray)
 		lighted = lighting(scene->light, spot, n);
 		shadowed = shadow(scene, plane, scene->light, spot);
 		scene->rec.color = cplus(cmult(cmult(plane->color, lighted), shadowed),
-				cmult(plane->color, vmult(scene->ambient.color,
-						scene->ambient.ratio)));
+			cmult(plane->color, vmult(scene->ambient.color,
+					scene->ambient.ratio)));
 		scene->rec.max_len = vlen(vminus(ray.origin, spot));
 		return (TRUE);
 	}

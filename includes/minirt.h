@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/23 22:12:31 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:19:26 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_recoder
 {
 	double				max_len;
 	t_color3			color;
+	t_point3 p; // ray와 obj의 교점 P의 좌표
 }						t_recoder;
 
 typedef struct s_ray
@@ -138,6 +139,14 @@ typedef struct s_cylinder
 	t_color3 color;  // RGB 색상 [0-1]
 }						t_cylinder;
 
+typedef struct s_circle
+{
+	t_point3			center;
+	t_vec3				axis;
+	double				radius;
+	t_color3			color;
+}						t_circle;
+
 /********************************** parser ************************************/
 void					parser(char *argv, t_scene *scene);
 
@@ -156,6 +165,11 @@ double					validate_ratio(double ratio);
 t_vec3					validate_uvec(t_vec3 uvec);
 double					validate_fov(double fov);
 
+/********************************** utils *************************************/
+t_point3				ray_at(t_ray ray, double t);
+t_color3				cal_color3(t_color3 obj_color, t_color3 lighted,
+							t_color3 shadowed, t_ambient ambient);
+
 /*********************************** error ************************************/
 void					pexit(const char *msg);
 
@@ -170,13 +184,24 @@ t_bool					type_hit(t_scene *scene, t_object *obj, t_ray ray);
 t_bool					hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray);
 t_point3				hit_spot(t_sphere *sphere, t_ray ray);
 t_bool					just_hit(void *me, t_node *objs, t_ray ray,
-							t_recoder rec);
-t_bool					just_type_hit(t_object *obj, t_ray ray, t_recoder rec);
+							t_recoder *rec);
+t_bool					just_type_hit(t_object *obj, t_ray ray, t_recoder *rec);
 t_bool					just_hit_sphere(t_sphere *sphere, t_ray ray,
 							t_recoder rec);
 t_bool					hit_plane(t_scene *scene, t_plane *plane, t_ray ray);
 t_bool					just_hit_plane(t_plane *plane, t_ray ray,
 							t_recoder rec);
+t_bool					hit_cylinder(t_scene *scene, t_cylinder *cy, t_ray ray);
+t_bool					hit_cylinder_side(t_scene *scene, t_cylinder *cy,
+							t_ray ray);
+t_bool					hit_cylinder_cap(t_scene *scene, t_cylinder *cy,
+							t_ray ray);
+t_bool					just_hit_cylinder(t_cylinder *cy, t_ray ray,
+							t_recoder *rec);
+t_bool					just_hit_cylinder_side(t_cylinder *cy, t_ray ray,
+							t_recoder *rec);
+t_bool					just_hit_cylinder_cap(t_circle cap, t_ray ray,
+							t_recoder *rec);
 
 /*********************************** ray **************************************/
 t_ray					ray_primary(t_camera cam, double x, double y);
