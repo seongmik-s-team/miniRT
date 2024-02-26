@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:12:59 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/23 22:40:38 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:31:06 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ t_bool	hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray)
 		if (vdot(vminus(spot, ray.origin), ray.direction) / (vlen(vminus(spot,
 						ray.origin)) * vlen(ray.direction)) < 0)
 			return (FALSE);
+		lighted = lighting(scene->light, spot, nv);
 		// 그림자 계산
 		shadowed = shadow(scene, sphere, scene->light, spot);
-		lighted = lighting(scene->light, spot, nv);
 		if (scene->rec.max_len >= vlen(vminus(ray.origin, spot)))
 		{
 			// 구의 법선벡터와 빛이 이루는 각도로 구한 빛의 세기에 따른 색 (이 빛을 곱해준다.)

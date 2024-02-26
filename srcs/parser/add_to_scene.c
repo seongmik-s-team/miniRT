@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:44:47 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/23 17:09:35 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:43:28 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ static t_camera	new_camera(t_scene *scene, char **datas)
 	cam.viewport_height = 1.5;
 	cam.viewport_width = scene->aspect_ratio * cam.viewport_height;
 	cam.focal_length = cal_focal_length(cam.viewport_width, cam.fov);
-	cam.horizontal = vmult(vunit(vcross(new_vec3(0, 1, 0), cam.ov)),
+	cam.horizontal = vmult(vunit(vcross(cam.ov, new_vec3(0, 1, 0))),
 			cam.viewport_width);
-	cam.vertical = vmult(vunit(vcross(cam.ov, cam.horizontal)),
-			-cam.viewport_height);
-	cam.lower_left = vminus(vminus(vminus(cam.origin, vdiv(cam.horizontal, 2)),
-				vdiv(cam.vertical, 2)), vmult(cam.ov, cam.focal_length));
+	cam.vertical = vmult(vunit(vcross(cam.horizontal, cam.ov)),
+			cam.viewport_height);
+	cam.lower_left = vplus(vplus(vplus(cam.origin, vdiv(cam.horizontal, -2.0)),
+				vdiv(cam.vertical, -2.0)), vmult(cam.ov, cam.focal_length));
 	return (cam);
 }
 
