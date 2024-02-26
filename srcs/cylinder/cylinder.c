@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:58:02 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/26 17:34:05 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/26 20:13:04 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,24 @@ t_cylinder	*new_cylinder(char **datas)
 
 t_bool	hit_cylinder(t_scene *scene, t_cylinder *cy, t_ray ray)
 {
+	t_bool	is_hit;
+
+	is_hit = FALSE;
 	if (hit_cylinder_side(scene, cy, ray))
-		return (TRUE);
+		is_hit = TRUE;
 	if (hit_cylinder_cap(scene, cy, ray))
-		return (TRUE);
-	return (FALSE);
+		is_hit = TRUE;
+	return (is_hit);
 }
 
 t_bool	just_hit_cylinder(t_cylinder *cy, t_ray ray, t_recoder *rec)
 {
+	t_bool	is_hit;
+
+	is_hit = FALSE;
 	if (just_hit_cylinder_side(cy, ray, rec))
-		return (TRUE);
+		is_hit = TRUE;
 	if (just_hit_cylinder_cap(cy, ray, rec))
-		return (TRUE);
-	return (FALSE);
+		is_hit = TRUE;
+	return (is_hit);
 }
