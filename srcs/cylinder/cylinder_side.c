@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:03:31 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/26 16:19:35 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/26 21:09:11 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_bool	just_hit_cylinder_side(t_cylinder *cy, t_ray ray, t_recoder *rec)
 		distance = vdot(vminus(p_proj, cy->center), cy->axis);
 		if (distance < -0.5 * cy->height || distance > 0.5 * cy->height)
 			return (FALSE);
-		if (t > rec->max_len)
+		if (vlen(vminus(ray.origin, p)) > rec->max_len)
 			return (FALSE);
 		rec->p = p;
 		return (TRUE);
