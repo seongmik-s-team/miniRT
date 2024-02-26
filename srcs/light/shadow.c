@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:32:57 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/22 19:59:18 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:18:14 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ t_color3	shadow(t_scene *scene, void *me, t_light light, t_point3 spot)
 
 	ray.origin = spot;
 	ray.direction = vunit(vminus(light.point, spot));
+	rec.p = scene->rec.p;
 	rec.max_len = vlen(vminus(light.point, spot));
-	if (just_hit(me, scene->objs->head, ray, rec))
+	if (just_hit(me, scene->objs->head, ray, &rec))
 		return (new_color3(0, 0, 0));
 	return (new_color3(1, 1, 1));
 }
