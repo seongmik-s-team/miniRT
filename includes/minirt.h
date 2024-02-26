@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/26 17:27:33 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/26 19:21:14 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,20 @@ typedef struct s_camera
 	double fov;             // Field of view (시야각)
 }						t_camera;
 
+typedef struct s_data
+{
+	void				*img;
+	char				*addr;
+	int					bits_per_pixel;
+	int					line_length;
+	int					endian;
+}						t_data;
+
 typedef struct s_mlx_ptrs
 {
 	void				*mlx;
 	void				*win;
+	t_data				data;
 }						t_mlx_ptrs;
 
 typedef struct s_ambient
@@ -178,6 +188,7 @@ void					pexit(const char *msg);
 void					mr_mlx_init(t_scene *scene);
 int						key_hook(int keycode, t_mlx_ptrs *ptrs);
 int						exit_hook(t_mlx_ptrs *ptrs);
+void					mr_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /*********************************** hit **************************************/
 t_bool					hit(t_scene *scene, t_node *objs, t_ray ray);

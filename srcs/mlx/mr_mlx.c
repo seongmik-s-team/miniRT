@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mr_mlx.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:09:04 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/23 21:33:35 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/26 19:27:33 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ void	draw_screen(t_scene *scene, t_mlx_ptrs *ptrs)
 		while (j < scene->width)
 		{
 			ray = ray_primary(scene->camera, (double)j / (double)scene->width,
-				(double)(scene->height - i) / (double)scene->height);
-			mlx_pixel_put(ptrs->mlx, ptrs->win, j, i, ray_color(scene, ray));
+					(double)(scene->height - i) / (double)scene->height);
+			mr_mlx_pixel_put(&(ptrs->data), j, i, ray_color(scene, ray));
 			j++;
 		}
 		i++;
 	}
+	mlx_put_image_to_window(ptrs->mlx, ptrs->win, ptrs->data.img, 0, 0);
 }
 
 void	mr_mlx_init(t_scene *scene)
@@ -54,6 +55,9 @@ void	mr_mlx_init(t_scene *scene)
 
 	ptrs.mlx = mlx_init();
 	ptrs.win = mlx_new_window(ptrs.mlx, scene->width, scene->height, "miniRT");
+	ptrs.data.img = mlx_new_image(ptrs.mlx, scene->width, scene->height);
+	ptrs.data.addr = mlx_get_data_addr(ptrs.data.img, &ptrs.data.bits_per_pixel,
+			&ptrs.data.line_length, &ptrs.data.endian);
 	mlx_key_hook(ptrs.win, key_hook, &ptrs);
 	mlx_hook(ptrs.win, EXIT_BUTTON, 0, exit_hook, &ptrs);
 	draw_screen(scene, &ptrs);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+         #
+#    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
-#    Updated: 2024/02/26 17:10:22 by jooahn           ###   ########.fr        #
+#    Updated: 2024/02/26 19:15:50 by seongmik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(VECTOR_DIR)/vec_oper_basic.c \
 								$(SRCS_DIR)/$(VECTOR_DIR)/vec_oper_linear_a.c \
 								$(SRCS_DIR)/$(MR_MLX_DIR)/mr_mlx.c \
+								$(SRCS_DIR)/$(MR_MLX_DIR)/mr_mlx_image.c \
 								$(SRCS_DIR)/$(MR_MLX_DIR)/hooks.c \
 								$(SRCS_DIR)/$(COLOR_DIR)/color.c \
 								$(SRCS_DIR)/$(RAY_DIR)/ray.c \
