@@ -40,6 +40,7 @@
 # define FALSE 0
 
 # define RGB_MAX 255.999
+# define LITTLE 0.0000001
 
 typedef struct s_vec3	t_vec3;
 typedef struct s_vec3	t_point3;
@@ -212,8 +213,7 @@ t_bool					hit(t_scene *scene, t_node *objs, t_ray ray);
 t_bool					type_hit(t_scene *scene, t_object *obj, t_ray ray);
 t_bool					hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray);
 t_point3				hit_spot(t_sphere *sphere, t_ray ray);
-t_bool					just_hit(void *me, t_node *objs, t_ray ray,
-							t_recoder *rec);
+t_bool					just_hit(t_node *objs, t_ray ray, t_recoder *rec);
 t_bool					just_type_hit(t_object *obj, t_ray ray, t_recoder *rec);
 t_bool					just_hit_sphere(t_sphere *sphere, t_ray ray,
 							t_recoder rec);
@@ -260,8 +260,7 @@ void					scene_init(t_scene *scene);
 t_point3				new_point3(double x, double y, double z);
 
 /********************************* shadow *************************************/
-t_color3				shadow(t_scene *scene, void *me, t_light light,
-							t_point3 spot);
+t_color3				shadow(t_scene *scene, t_light light, t_point3 spot);
 
 /********************************** light *************************************/
 t_light					new_light(char **datas);

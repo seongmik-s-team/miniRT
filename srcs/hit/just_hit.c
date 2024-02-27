@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   just_hit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:47:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/27 15:47:20 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/27 18:11:13 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_bool	just_hit(void *me, t_node *objs, t_ray ray, t_recoder *rec)
+t_bool	just_hit(t_node *objs, t_ray ray, t_recoder *rec)
 {
 	t_object	*obj;
 
+	ray.origin = vplus(ray.origin, vmult(vunit(ray.direction), LITTLE));
 	while (objs)
 	{
 		obj = (t_object *)objs->content;
-		if (me != obj->obj && just_type_hit(obj, ray, rec))
+		if (just_type_hit(obj, ray, rec))
 			return (TRUE);
 		objs = objs->next;
 	}

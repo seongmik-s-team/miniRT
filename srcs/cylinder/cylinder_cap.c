@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:04:06 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/27 16:52:59 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/27 18:11:09 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_bool	hit_cylinder_cap(t_scene *scene, t_cylinder *cy, t_ray ray)
 		if (scene->rec.max_len >= vlen(vminus(ray.origin, p)))
 		{
 			scene->rec.color = cal_color3(cy->color, lighting(scene->light, p,
-					scene->rec.nv), shadow(scene, cy, scene->light, p),
+					scene->rec.nv), shadow(scene, scene->light, p),
 				scene->ambient);
 			scene->rec.max_len = vlen(vminus(ray.origin, p));
 			return (TRUE);

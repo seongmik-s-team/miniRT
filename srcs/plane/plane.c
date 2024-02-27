@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:57:33 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/27 15:46:17 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/27 18:11:19 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ t_bool	hit_plane(t_scene *scene, t_plane *plane, t_ray ray)
 	if (scene->rec.max_len >= vlen(vminus(ray.origin, spot)))
 	{
 		lighted = lighting(scene->light, spot, n);
-		shadowed = shadow(scene, plane, scene->light, spot);
+		shadowed = shadow(scene, scene->light, spot);
 		scene->rec.color = cplus(cmult(cmult(plane->color, lighted), shadowed),
-				cmult(plane->color, vmult(scene->ambient.color,
-						scene->ambient.ratio)));
+			cmult(plane->color, vmult(scene->ambient.color,
+					scene->ambient.ratio)));
 		scene->rec.max_len = vlen(vminus(ray.origin, spot));
 		return (TRUE);
 	}
