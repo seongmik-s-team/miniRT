@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:39:48 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/20 17:17:53 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 02:31:01 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*ft_strcat(char *s, char *buffer, ssize_t size)
 
 ssize_t	ft_strchr_idx(char *s, char c, size_t offset)
 {
-	size_t i;
+	size_t	i;
 
 	if (!s)
 		return (-1);

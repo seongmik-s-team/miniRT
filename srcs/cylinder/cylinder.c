@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:58:02 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/27 22:56:00 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 02:20:03 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,15 @@ t_cylinder	*new_cylinder(char **datas)
 	if (get_arr_size(datas) != 6)
 		pexit("[Parsing Error] Invalid number of cylinder data");
 	cy = (t_cylinder *)ft_calloc(sizeof(t_cylinder));
-	cy->center = str_to_point3(datas[1], ',');
+	cy->center = str_to_vec3(datas[1], ',');
 	cy->axis = vunit(validate_uvec(str_to_vec3(datas[2], ',')));
 	cy->diameter = ft_strtod(datas[3]) / 2.0;
 	cy->height = ft_strtod(datas[4]);
 	cy->color = to_color3(str_to_rgb(datas[5], ','));
+	cy->topcap = new_circle(cy->axis, vplus(cy->center, vmult(cy->axis, 0.5
+				* cy->height)), cy->diameter);
+	cy->botcap = new_circle(vmult(cy->axis, -1), vplus(cy->center,
+			vmult(cy->axis, -0.5 * cy->height)), cy->diameter);
 	return (cy);
 }
 

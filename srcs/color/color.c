@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:43:40 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/27 22:48:32 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 02:22:58 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,24 @@ t_color3	new_color3(double x, double y, double z)
 	new_color.y = y;
 	new_color.z = z;
 	return (new_color);
+}
+
+t_color3	cal_color3(t_scene *scene, t_color3 obj_color)
+{
+	t_color3	result;
+	t_recoder	rec;
+	t_light		light;
+	t_ambient	ambient;
+
+	rec = scene->rec;
+	light = scene->light;
+	ambient = scene->ambient;
+	result = obj_color;
+	result = cmult(result, lighting(light, rec.p, rec.nv));
+	result = cmult(result, shadow(scene, light, rec.p));
+	result = cplus(result, cmult(obj_color, vmult(ambient.color,
+				ambient.ratio)));
+	return (result);
 }
 
 t_rgb	to_rgb(t_color3 color)
@@ -39,7 +57,7 @@ int	to_hex(t_rgb rgb)
 
 t_color3	to_color3(t_rgb rgb)
 {
-	t_color3 color;
+	t_color3	color;
 
 	color.x = (double)rgb.r / RGB_MAX;
 	color.y = (double)rgb.g / RGB_MAX;

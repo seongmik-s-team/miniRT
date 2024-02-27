@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 21:33:25 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/25 02:02:53 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 02:23:11 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ t_vec3	str_to_vec3(char *str, char sep)
 	return (vec);
 }
 
-t_point3	str_to_point3(char *str, char sep)
-{
-	return ((t_point3)str_to_vec3(str, sep));
-}
-
 t_rgb	str_to_rgb(char *str, char sep)
 {
 	t_rgb	rgb;
@@ -47,17 +42,6 @@ t_rgb	str_to_rgb(char *str, char sep)
 	if (!is_rgb(rgb))
 		pexit("[Parsing Error] Invalid range of rgb");
 	return (rgb);
-}
-
-t_bool	is_rgb(t_rgb rgb)
-{
-	if (rgb.r < 0 || rgb.r > 255)
-		return (FALSE);
-	if (rgb.g < 0 || rgb.g > 255)
-		return (FALSE);
-	if (rgb.b < 0 || rgb.b > 255)
-		return (FALSE);
-	return (TRUE);
 }
 
 double	validate_ratio(double ratio)

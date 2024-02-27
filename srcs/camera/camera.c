@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 21:16:02 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/27 23:04:23 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 02:34:23 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_camera	new_camera(t_scene *scene, char **datas)
 
 	if (get_arr_size(datas) != 4)
 		pexit("[Parsing Error] Invalid number of camera data");
-	cam.origin = str_to_point3(datas[1], ',');
+	cam.origin = str_to_vec3(datas[1], ',');
 	cam.ov = vunit(validate_uvec(str_to_vec3(datas[2], ',')));
 	cam.fov = validate_fov(ft_strtod(datas[3]));
 	cam.viewport_height = 1.5;

@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mr_mlx_image.c                                     :+:      :+:    :+:   */
+/*   color2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 19:15:23 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/28 02:17:57 by jooahn           ###   ########.fr       */
+/*   Created: 2024/02/28 02:22:26 by jooahn            #+#    #+#             */
+/*   Updated: 2024/02/28 02:22:55 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	mr_mlx_pixel_put(t_data *data, int x, int y, int color)
+t_bool	is_rgb(t_rgb rgb)
 {
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	if (rgb.r < 0 || rgb.r > 255)
+		return (FALSE);
+	if (rgb.g < 0 || rgb.g > 255)
+		return (FALSE);
+	if (rgb.b < 0 || rgb.b > 255)
+		return (FALSE);
+	return (TRUE);
 }

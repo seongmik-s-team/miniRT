@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 22:10:30 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/27 23:04:47 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 02:20:11 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_light	new_light(char **datas)
 
 	if (get_arr_size(datas) < 3 || 4 < get_arr_size(datas))
 		pexit("[Parsing Error] Invalid number of light data");
-	light.point = str_to_point3(datas[1], ',');
+	light.point = str_to_vec3(datas[1], ',');
 	light.ratio = validate_ratio(ft_strtod(datas[2]));
 	if (datas[3])
 		str_to_rgb(datas[3], ',');

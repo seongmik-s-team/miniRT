@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:27:47 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/27 23:36:23 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 00:14:36 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	parser(char *argv, t_scene *scene)
 			datas = ft_split(line, ' ');
 			add_to_scene(scene, datas);
 			acl_counter(datas);
+			ft_split_free(datas);
 		}
 		free(line);
-		ft_split_free(datas);
 		line = get_trimmed_line(fd);
 	}
 	close(fd);

@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/27 23:13:53 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 02:21:19 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,17 @@ typedef struct s_object
 
 typedef struct s_sphere
 {
-	t_point3 center; // 구의 중심 좌표
-	double diameter; // 구의 반지름
-	t_color3 color;  // RGB 색상 [0-1]
+	t_point3			center;
+	double				diameter;
+	t_color3			color;
 }						t_sphere;
 
 typedef struct s_recoder
 {
 	double				max_len;
 	t_color3			color;
-	t_point3 p; // ray와 obj의 교점 P의 좌표
-	t_vec3 nv;  // 교점 P에서의 법선벡터
+	t_point3			p;
+	t_vec3				nv;
 }						t_recoder;
 
 typedef struct s_ray
@@ -100,15 +100,15 @@ typedef struct s_ray
 
 typedef struct s_camera
 {
-	t_point3 origin;        // 카메라의 좌표(카메라의 원점)
-	t_vec3 ov;              // orientation vector (카메라가 바라보고 있는 방향을 나타내는 단위벡터)
-	double viewport_height; // 뷰포트 높이
-	double viewport_width;  // 뷰포트 너비
-	double focal_length;    // 바라보는 시점의 평면과의 거리
-	t_vec3 horizontal;      // 뷰포트의 수직 벡터 (0, 0, viewport_width)
-	t_vec3 vertical;        // 뷰포트의 수평 벡터 (0, viewport_height, 0)
-	t_vec3 lower_left;      // 뷰포트의 왼쪽 아래 점
-	double fov;             // Field of view (시야각)
+	t_point3			origin;
+	t_vec3				ov;
+	double				viewport_height;
+	double				viewport_width;
+	double				focal_length;
+	t_vec3				horizontal;
+	t_vec3				vertical;
+	t_vec3				lower_left;
+	double				fov;
 }						t_camera;
 
 typedef struct s_data
@@ -129,14 +129,14 @@ typedef struct s_mlx_ptrs
 
 typedef struct s_ambient
 {
-	double ratio;   // 조명빛의 세기 비율 [0.0, 1.0]
-	t_color3 color; // 조명색 (RGB) [0, 1]
+	double				ratio;
+	t_color3			color;
 }						t_ambient;
 
 typedef struct s_light
 {
-	t_point3 point; // 빛의 좌표
-	double ratio;   // 빛의 밝기 비율 [0.0, 1.0]
+	t_point3			point;
+	double				ratio;
 }						t_light;
 
 typedef struct s_scene
@@ -144,29 +144,20 @@ typedef struct s_scene
 	t_mlx_ptrs			ptrs;
 	int					width;
 	int					height;
-	double aspect_ratio; // 종횡비 (스크린 가로 길이 / 세로 길이)
-	t_camera camera;     // 카메라
-	t_ambient ambient;   // 주변광
-	t_light light;       // 라이트
-	t_list *objs;        // 오브젝트 리스트
+	double				aspect_ratio;
+	t_camera			camera;
+	t_ambient			ambient;
+	t_light				light;
+	t_list				*objs;
 	t_recoder			rec;
 }						t_scene;
 
 typedef struct s_plane
 {
-	t_point3 center; // 평면의 중심 좌표
-	t_vec3 axis;     // 평면의 방향 벡터 [-1,1]
-	t_color3 color;  // RGB 색상 [0-1]
+	t_point3			center;
+	t_vec3				axis;
+	t_color3			color;
 }						t_plane;
-
-typedef struct s_cylinder
-{
-	t_point3 center; // 원기둥의 중심 좌표
-	t_vec3 axis;     // 원기둥의 방향 벡터 [-1,1]
-	double diameter; // 반지름
-	double height;   // 높이
-	t_color3 color;  // RGB 색상 [0-1]
-}						t_cylinder;
 
 typedef struct s_circle
 {
@@ -174,6 +165,17 @@ typedef struct s_circle
 	t_vec3				axis;
 	double				radius;
 }						t_circle;
+
+typedef struct s_cylinder
+{
+	t_point3			center;
+	t_vec3				axis;
+	double				diameter;
+	double				height;
+	t_color3			color;
+	t_circle			topcap;
+	t_circle			botcap;
+}						t_cylinder;
 
 /********************************** parser ************************************/
 void					parser(char *argv, t_scene *scene);
@@ -188,7 +190,6 @@ int						get_arr_size(char **p);
 char					*get_trimmed_line(int fd);
 t_vec3					str_to_vec3(char *str, char sep);
 t_rgb					str_to_rgb(char *str, char sep);
-t_point3				str_to_point3(char *str, char sep);
 t_bool					is_rgb(t_rgb rgb);
 double					validate_ratio(double ratio);
 t_vec3					validate_uvec(t_vec3 uvec);
@@ -196,8 +197,7 @@ double					validate_fov(double fov);
 
 /********************************** utils *************************************/
 t_point3				ray_at(t_ray ray, double t);
-t_color3				cal_color3(t_color3 obj_color, t_color3 lighted,
-							t_color3 shadowed, t_ambient ambient);
+t_color3				cal_color3(t_scene *scene, t_color3 obj_color);
 
 /*********************************** error ************************************/
 void					pexit(const char *msg);
@@ -233,6 +233,8 @@ t_bool					just_hit_cylinder_side(t_cylinder *cy, t_ray ray,
 							t_recoder *rec);
 t_bool					just_hit_cylinder_cap(t_cylinder *cy, t_ray ray,
 							t_recoder *rec);
+t_bool					hit_circle(t_circle circle, t_ray ray, t_recoder *rec);
+t_bool					just_hit_circle(t_circle circle, t_ray ray);
 
 /*********************************** ray **************************************/
 t_ray					ray_primary(t_camera cam, double x, double y);
@@ -250,6 +252,7 @@ t_object				*new_object(char **datas);
 void					del_object(void *obj);
 t_plane					*new_plane(char **datas);
 t_cylinder				*new_cylinder(char **datas);
+t_circle				new_circle(t_vec3 axis, t_point3 center, double radius);
 t_bool					is_object(char *id);
 
 /********************************** sphere ************************************/

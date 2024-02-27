@@ -6,11 +6,14 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:46:12 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/27 23:14:18 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 02:28:22 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static void	initial_setting(const char **str, double *result, int *sign,
+				double *decimal_place);
 
 double	ft_strtod(const char *str)
 {
@@ -20,18 +23,7 @@ double	ft_strtod(const char *str)
 
 	if (!str)
 		pexit("[Parsing Error] Invalid data");
-	result = 0.0;
-	sign = 1;
-	decimal_place = 0.1;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == '-')
-	{
-		sign = -1;
-		str++;
-	}
-	else if (*str == '+')
-		str++;
+	initial_setting(&str, &result, &sign, &decimal_place);
 	while (ft_isdigit(*str))
 	{
 		result = (result * 10) + (*str - '0');
@@ -50,6 +42,23 @@ double	ft_strtod(const char *str)
 	if (*str)
 		pexit("[Parsing Error] Is not double");
 	return (sign * result);
+}
+
+static void	initial_setting(const char **str, double *result, int *sign,
+		double *decimal_place)
+{
+	*result = 0.0;
+	*sign = 1;
+	*decimal_place = 0.1;
+	while (ft_isspace(**str))
+		(*str)++;
+	if (**str == '-')
+	{
+		*sign = -1;
+		(*str)++;
+	}
+	else if (**str == '+')
+		(*str)++;
 }
 
 int	get_type(char *id)

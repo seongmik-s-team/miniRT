@@ -6,7 +6,7 @@
 #    By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
-#    Updated: 2024/02/27 23:46:41 by jooahn           ###   ########.fr        #
+#    Updated: 2024/02/28 02:22:49 by jooahn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ HIT_DIR						:=	hit
 RAY_DIR						:=	ray
 SPHERE_DIR					:=	sphere
 CYLINDER_DIR				:=	cylinder
+CIRCLE_DIR					:=	circle
 PLANE_DIR					:=	plane
 LIGHT_DIR					:=	light
 MR_MLX_DIR					:=	mlx
@@ -45,6 +46,7 @@ SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(MR_MLX_DIR)/mr_mlx_image.c \
 								$(SRCS_DIR)/$(MR_MLX_DIR)/hooks.c \
 								$(SRCS_DIR)/$(COLOR_DIR)/color.c \
+								$(SRCS_DIR)/$(COLOR_DIR)/color2.c \
 								$(SRCS_DIR)/$(RAY_DIR)/ray.c \
 								$(SRCS_DIR)/$(LIGHT_DIR)/light.c \
 								$(SRCS_DIR)/$(LIGHT_DIR)/shadow.c \
@@ -58,7 +60,7 @@ SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(CYLINDER_DIR)/cylinder.c \
 								$(SRCS_DIR)/$(CYLINDER_DIR)/cylinder_cap.c \
 								$(SRCS_DIR)/$(CYLINDER_DIR)/cylinder_side.c \
-								$(SRCS_DIR)/$(CYLINDER_DIR)/utils.c \
+								$(SRCS_DIR)/$(CIRCLE_DIR)/circle.c \
 								$(SRCS_DIR)/$(SPHERE_DIR)/sphere.c \
 								$(SRCS_DIR)/$(PARSER_DIR)/parser.c \
 								$(SRCS_DIR)/$(PARSER_DIR)/add_to_scene.c \
