@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:09:04 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/27 16:55:02 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/27 19:26:31 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	mr_mlx_init(t_scene *scene)
 	scene->ptrs.data.addr = mlx_get_data_addr(scene->ptrs.data.img,
 			&scene->ptrs.data.bits_per_pixel, &scene->ptrs.data.line_length,
 			&scene->ptrs.data.endian);
-	mlx_key_hook(scene->ptrs.win, key_hook, scene);
+	mlx_hook(scene->ptrs.win, 2, 0, key_hook, scene);
 	mlx_hook(scene->ptrs.win, EXIT_BUTTON, 0, exit_hook, &scene->ptrs);
 	draw_screen_simple(scene, &scene->ptrs);
 	mlx_loop(scene->ptrs.mlx);

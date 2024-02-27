@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 22:10:30 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/27 16:17:31 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/27 19:04:27 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ t_light	new_light(char **datas)
 	if (datas[3])
 		str_to_rgb(datas[3], ',');
 	return (light);
+}
+
+void	set_light(t_scene *scene, t_point3 set_point)
+{
+	scene->light.point = set_point;
 }
 
 // spot 점에서 라이트와 물체의 법선벡터가 이루는 각으로 빛의 정도를 계산해서 반환해준다.
