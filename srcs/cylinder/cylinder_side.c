@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:03:31 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/27 16:38:22 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/27 18:11:10 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ t_bool	hit_cylinder_side(t_scene *scene, t_cylinder *cy, t_ray ray)
 		p = scene->rec.p;
 		p_proj = vplus(cy->center, vmult(cy->axis, vdot(vminus(scene->rec.p,
 						cy->center), cy->axis)));
-		nv = vunit(vminus(p, p_proj)); // 교점에서의 법선벡터
+		nv = vunit(vminus(p, p_proj));   // 교점에서의 법선벡터
 		if (vdot(ray.direction, nv) > 0) // 물체의 내부면 법선 벡터 뒤집깅~~!!
 			nv = (vmult(nv, -1));
 		if (scene->rec.max_len >= vlen(vminus(ray.origin, p)))
 		{
 			scene->rec.color = cal_color3(cy->color, lighting(scene->light, p,
-					nv), shadow(scene, cy, scene->light, p), scene->ambient);
+					nv), shadow(scene, scene->light, p), scene->ambient);
 			scene->rec.max_len = vlen(vminus(ray.origin, p));
 			return (TRUE);
 		}
