@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:57:33 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/26 17:21:00 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:46:17 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_bool	hit_plane(t_scene *scene, t_plane *plane, t_ray ray)
 {
 	double		no;
 	double		nv;
-	double		d;
 	double		t;
 	t_point3	spot;
 	t_point3	shadowed;
@@ -45,11 +44,11 @@ t_bool	hit_plane(t_scene *scene, t_plane *plane, t_ray ray)
 		n = vmult(plane->axis, -1);
 	else
 		n = plane->axis;
-	no = vdot(n, ray.origin);
+	no = vdot(n, vminus(ray.origin, plane->center));
 	nv = vdot(n, ray.direction);
-	d = (plane->center.x * n.x) + (plane->center.y * n.y) + (plane->center.z
-			* n.z);
-	t = -((no + d) / nv);
+	if (nv == 0) // 광선이 평면과 평행인 경우
+		return (FALSE);
+	t = -(no / nv);
 	spot = vplus(ray.origin, vmult(ray.direction, t)); // 평면과 ray의 교점
 	// 평면이 Ray의 origin보다 뒤에 있는지 체크한다. 뒤에 있다면 그리지 않는다.
 	if (vdot(vminus(spot, ray.origin), ray.direction) / (vlen(vminus(spot,
@@ -60,8 +59,8 @@ t_bool	hit_plane(t_scene *scene, t_plane *plane, t_ray ray)
 		lighted = lighting(scene->light, spot, n);
 		shadowed = shadow(scene, plane, scene->light, spot);
 		scene->rec.color = cplus(cmult(cmult(plane->color, lighted), shadowed),
-			cmult(plane->color, vmult(scene->ambient.color,
-					scene->ambient.ratio)));
+				cmult(plane->color, vmult(scene->ambient.color,
+						scene->ambient.ratio)));
 		scene->rec.max_len = vlen(vminus(ray.origin, spot));
 		return (TRUE);
 	}
