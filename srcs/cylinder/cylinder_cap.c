@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:04:06 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/26 20:56:07 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/27 16:52:59 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 t_bool		hit_cylinder_cap(t_scene *scene, t_cylinder *cy, t_ray ray);
 t_bool		circle_discriminant(t_circle circle, t_ray ray, double *t,
 				double *len);
-t_circle	new_circle(t_vec3 axis, t_point3 center, t_color3 color,
-				double radius);
+t_circle	new_circle(t_vec3 axis, t_point3 center, double radius);
 
 // 원기둥의 밑면에 맞았는지 판별
 t_bool	hit_cylinder_cap(t_scene *scene, t_cylinder *cy, t_ray ray)
@@ -26,6 +25,8 @@ t_bool	hit_cylinder_cap(t_scene *scene, t_cylinder *cy, t_ray ray)
 	if (just_hit_cylinder_cap(cy, ray, &(scene->rec)))
 	{
 		p = scene->rec.p;
+		if (vdot(ray.direction, scene->rec.nv) > 0) // 물체의 내부면 법선 벡터 뒤집깅~~!!
+			scene->rec.nv = (vmult(scene->rec.nv, -1));
 		if (scene->rec.max_len >= vlen(vminus(ray.origin, p)))
 		{
 			scene->rec.color = cal_color3(cy->color, lighting(scene->light, p,
@@ -46,10 +47,10 @@ t_bool	just_hit_cylinder_cap(t_cylinder *cy, t_ray ray, t_recoder *rec)
 	t_circle	bot_cap;
 	t_bool		flag;
 
-	top_cap = new_circle(vunit(cy->axis), vplus(cy->center, vmult(cy->axis, 0.5
-				* cy->height)), cy->color, cy->diameter);
-	bot_cap = new_circle(vunit(vmult(cy->axis, -1)), vplus(cy->center,
-			vmult(cy->axis, -0.5 * cy->height)), cy->color, cy->diameter);
+	top_cap = new_circle(cy->axis, vplus(cy->center, vmult(cy->axis, 0.5
+				* cy->height)), cy->diameter);
+	bot_cap = new_circle(vmult(cy->axis, -1), vplus(cy->center, vmult(cy->axis,
+				-0.5 * cy->height)), cy->diameter);
 	flag = FALSE;
 	if (circle_discriminant(top_cap, ray, &t, &len) && (len < rec->max_len))
 	{
@@ -65,9 +66,7 @@ t_bool	just_hit_cylinder_cap(t_cylinder *cy, t_ray ray, t_recoder *rec)
 		rec->max_len = len;
 		return (TRUE);
 	}
-	if (flag)
-		return (TRUE);
-	return (FALSE);
+	return (flag);
 }
 
 t_bool	circle_discriminant(t_circle circle, t_ray ray, double *t, double *len)
@@ -93,14 +92,12 @@ t_bool	circle_discriminant(t_circle circle, t_ray ray, double *t, double *len)
 	return (TRUE);
 }
 
-t_circle	new_circle(t_vec3 axis, t_point3 center, t_color3 color,
-		double radius)
+t_circle	new_circle(t_vec3 axis, t_point3 center, double radius)
 {
 	t_circle	circle;
 
 	circle.axis = axis;
 	circle.center = center;
-	circle.color = color;
 	circle.radius = radius;
 	return (circle);
 }

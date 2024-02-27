@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:48:10 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/20 20:48:34 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/27 15:59:43 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	pexit(const char *msg)
 {
+	write(2, "Error\n", 6);
 	perror(msg);
 	exit(FAILURE);
 }
