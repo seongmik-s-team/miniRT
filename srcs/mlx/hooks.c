@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:27:05 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/27 17:17:27 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/27 19:05:00 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,16 @@ int	key_hook(int keycode, t_scene *scene)
 	{
 		draw_screen(scene, &scene->ptrs);
 	}
-	move_hook(keycode, scene);
-	rotate_hook(keycode, scene);
+	else if (keycode == L_KEY)
+	{
+		set_light(scene, scene->camera.origin);
+		draw_screen_simple(scene, &scene->ptrs);
+	}
+	else
+	{
+		move_hook(keycode, scene);
+		rotate_hook(keycode, scene);
+	}
 	return (SUCCESS);
 }
 

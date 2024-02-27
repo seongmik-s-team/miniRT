@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/27 17:09:22 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/27 19:04:36 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # define ESC_KEY 53
 # define R_KEY 15
+# define L_KEY 37
 
 # define LEFT_KEY 123
 # define RIGHT_KEY 124
@@ -264,6 +265,7 @@ t_color3				shadow(t_scene *scene, void *me, t_light light,
 
 /********************************** light *************************************/
 t_light					new_light(char **datas);
+void					set_light(t_scene *scene, t_point3 set_point);
 t_color3				lighting(t_light light, t_point3 spot, t_vec3 nv);
 
 /********************************** vector ************************************/
