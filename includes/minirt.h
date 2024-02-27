@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
 /*   Updated: 2024/02/27 17:09:22 by seongmik         ###   ########.fr       */
@@ -168,7 +168,6 @@ typedef struct s_circle
 	t_point3			center;
 	t_vec3				axis;
 	double				radius;
-	t_color3			color;
 }						t_circle;
 
 /********************************** parser ************************************/

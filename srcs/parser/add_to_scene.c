@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   add_to_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:44:47 by jooahn            #+#    #+#             */
 /*   Updated: 2024/02/27 17:11:30 by seongmik         ###   ########.fr       */
@@ -38,8 +38,13 @@ void	add_to_scene(t_scene *scene, char **datas)
 // 동적할당 X
 static t_ambient	new_ambient(char **datas)
 {
-	t_ambient	ambient;
+	t_ambient		ambient;
+	static t_bool	is_declared = FALSE;
 
+	if (is_declared == FALSE)
+		is_declared = TRUE;
+	else
+		pexit("[Parsing Error] Ambient can only be declared once in the scene.");
 	if (get_arr_size(datas) != 3)
 		pexit("[Parsing Error] Invalid number of ambient data");
 	ambient.ratio = validate_ratio(ft_strtod(datas[1]));
@@ -57,8 +62,13 @@ t_vec3	safe_new_horizontal(t_vec3 ov, double viewport_width)
 // 동적할당 X
 static t_camera	new_camera(t_scene *scene, char **datas)
 {
-	t_camera	cam;
+	t_camera		cam;
+	static t_bool	is_declared = FALSE;
 
+	if (is_declared == FALSE)
+		is_declared = TRUE;
+	else
+		pexit("[Parsing Error] Camera can only be declared once in the scene.");
 	if (get_arr_size(datas) != 4)
 		pexit("[Parsing Error] Invalid number of camera data");
 	cam.origin = str_to_point3(datas[1], ',');
@@ -69,9 +79,9 @@ static t_camera	new_camera(t_scene *scene, char **datas)
 	cam.focal_length = cal_focal_length(cam.viewport_width, cam.fov);
 	cam.horizontal = safe_new_horizontal(cam.ov, cam.viewport_width);
 	cam.vertical = vmult(vunit(vcross(cam.horizontal, cam.ov)),
-			cam.viewport_height);
+		cam.viewport_height);
 	cam.lower_left = vplus(vplus(vplus(cam.origin, vdiv(cam.horizontal, -2.0)),
-				vdiv(cam.vertical, -2.0)), vmult(cam.ov, cam.focal_length));
+			vdiv(cam.vertical, -2.0)), vmult(cam.ov, cam.focal_length));
 	return (cam);
 }
 

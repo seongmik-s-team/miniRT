@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 22:10:30 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/23 22:12:17 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:17:31 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 t_light	new_light(char **datas)
 {
-	t_light	light;
+	t_light			light;
+	static t_bool	is_declared = FALSE;
 
+	if (is_declared == FALSE)
+		is_declared = TRUE;
+	else
+		pexit("[Parsing Error] Light can only be declared once in the scene.");
 	if (get_arr_size(datas) < 3 || 4 < get_arr_size(datas))
 		pexit("[Parsing Error] Invalid number of light data");
 	light.point = str_to_point3(datas[1], ',');
