@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:47:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/26 17:19:45 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:47:20 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,20 @@ t_bool	just_hit_plane(t_plane *plane, t_ray ray, t_recoder rec)
 {
 	double		no;
 	double		nv;
-	double		d;
 	double		t;
 	t_point3	spot;
+	t_vec3		n;
 
 	// 두 벡터가 수직하는 경우 내적이 0이므로 ray가 평면에 포함된 경우이다. 교점존재x
 	if (vdot(plane->axis, ray.direction) == 0)
 		return (FALSE);
-	no = vdot(plane->axis, ray.origin);
-	nv = vdot(plane->axis, ray.direction);
-	d = (plane->center.x * plane->axis.x) + (plane->center.y * plane->axis.y)
-		+ (plane->center.z * plane->axis.z);
-	t = -((no + d) / nv);
+	else if (vdot(plane->axis, ray.direction) > 0)
+		n = vmult(plane->axis, -1);
+	else
+		n = plane->axis;
+	no = vdot(n, vminus(ray.origin, plane->center));
+	nv = vdot(n, ray.direction);
+	t = -(no / nv);
 	spot = vplus(ray.origin, vmult(ray.direction, t)); // 평면과 ray의 교점
 	// 평면이 Ray의 origin보다 뒤에 있는지 체크한다. 뒤에 있다면 그리지 않는다.
 	if (vdot(vminus(spot, ray.origin), ray.direction) / (vlen(vminus(spot,

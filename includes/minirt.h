@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/27 16:50:29 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/27 17:09:22 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@
 # include <stdio.h>
 
 # define ESC_KEY 53
+# define R_KEY 15
+
+# define LEFT_KEY 123
+# define RIGHT_KEY 124
+# define DOWN_KEY 125
+# define UP_KEY 126
+
+# define W_KEY 13
+# define A_KEY 0
+# define S_KEY 1
+# define D_KEY 2
+
 # define EXIT_BUTTON 17
 
 # define SUCCESS 0
@@ -124,6 +136,7 @@ typedef struct s_light
 
 typedef struct s_scene
 {
+	t_mlx_ptrs			ptrs;
 	int					width;
 	int					height;
 	double aspect_ratio; // 종횡비 (스크린 가로 길이 / 세로 길이)
@@ -185,9 +198,13 @@ void					pexit(const char *msg);
 
 /*********************************** mlx **************************************/
 void					mr_mlx_init(t_scene *scene);
-int						key_hook(int keycode, t_mlx_ptrs *ptrs);
+int						key_hook(int keycode, t_scene *scene);
 int						exit_hook(t_mlx_ptrs *ptrs);
 void					mr_mlx_pixel_put(t_data *data, int x, int y, int color);
+t_camera				move_camera(t_scene *scene, t_point3 move);
+t_camera				rotate_camera(t_scene *scene, t_vec3 ov);
+void					draw_screen_simple(t_scene *scene, t_mlx_ptrs *ptrs);
+void					draw_screen(t_scene *scene, t_mlx_ptrs *ptrs);
 
 /*********************************** hit **************************************/
 t_bool					hit(t_scene *scene, t_node *objs, t_ray ray);
