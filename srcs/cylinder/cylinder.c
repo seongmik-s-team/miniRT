@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:58:02 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/26 20:13:04 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/27 22:56:00 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_bool		just_hit_cylinder_side(t_cylinder *cy, t_ray ray, t_recoder *rec);
 
-// 동적할당 O, 사용 후 del_cylinder 호출
 t_cylinder	*new_cylinder(char **datas)
 {
 	t_cylinder	*cy;

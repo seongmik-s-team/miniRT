@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isinteger.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahn <ahn@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 03:14:30 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/18 16:47:18 by ahn              ###   ########.fr       */
+/*   Updated: 2024/02/27 22:50:57 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int	isinteger_util(const char *str, int neg);
 
-// 문자열이 int 범위의 값인지 체크. 부호 하나 포함 가능
 int	ft_isinteger(const char *str)
 {
 	int	neg;

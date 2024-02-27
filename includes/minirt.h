@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/27 19:04:36 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/27 23:13:53 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ typedef struct s_rgb
 
 enum					e_object_type
 {
+	AMBIENT,
+	CAMERA,
+	LIGHT,
 	SPHERE,
 	PLANE,
 	CYLINDER
@@ -180,6 +183,7 @@ void					add_to_scene(t_scene *scene, char **datas);
 
 /****************************** parser_utils **********************************/
 double					ft_strtod(const char *str);
+int						get_type(char *id);
 int						get_arr_size(char **p);
 char					*get_trimmed_line(int fd);
 t_vec3					str_to_vec3(char *str, char sep);
@@ -203,8 +207,6 @@ void					mr_mlx_init(t_scene *scene);
 int						key_hook(int keycode, t_scene *scene);
 int						exit_hook(t_mlx_ptrs *ptrs);
 void					mr_mlx_pixel_put(t_data *data, int x, int y, int color);
-t_camera				move_camera(t_scene *scene, t_point3 move);
-t_camera				rotate_camera(t_scene *scene, t_vec3 ov);
 void					draw_screen_simple(t_scene *scene, t_mlx_ptrs *ptrs);
 void					draw_screen(t_scene *scene, t_mlx_ptrs *ptrs);
 
@@ -238,13 +240,14 @@ int						ray_color(t_scene *scene, t_ray ray);
 
 /********************************** color *************************************/
 t_color3				new_color3(double x, double y, double z);
+int						sky_color(t_ray ray);
 t_rgb					to_rgb(t_color3 color);
 int						to_hex(t_rgb rgb);
-int						sky_color(t_ray ray);
 t_color3				to_color3(t_rgb rgb);
 
 /********************************** object ************************************/
 t_object				*new_object(char **datas);
+void					del_object(void *obj);
 t_plane					*new_plane(char **datas);
 t_cylinder				*new_cylinder(char **datas);
 t_bool					is_object(char *id);
@@ -255,6 +258,15 @@ t_bool					hit_sphere(t_scene *scene, t_sphere *sphere, t_ray ray);
 
 /********************************** scene *************************************/
 void					scene_init(t_scene *scene);
+void					del_scene(t_scene *scene);
+
+/********************************* ambient ************************************/
+t_ambient				new_ambient(char **datas);
+
+/********************************** camera ************************************/
+t_camera				new_camera(t_scene *scene, char **datas);
+t_camera				move_camera(t_scene *scene, t_point3 move);
+t_camera				rotate_camera(t_scene *scene, t_vec3 ov);
 
 /********************************** point *************************************/
 t_point3				new_point3(double x, double y, double z);

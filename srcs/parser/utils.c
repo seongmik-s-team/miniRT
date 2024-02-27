@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:46:12 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/21 16:46:05 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/27 23:14:18 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,24 @@ double	ft_strtod(const char *str)
 	return (sign * result);
 }
 
+int	get_type(char *id)
+{
+	if (ft_str_is_same(id, "A"))
+		return (AMBIENT);
+	if (ft_str_is_same(id, "C"))
+		return (CAMERA);
+	if (ft_str_is_same(id, "L"))
+		return (LIGHT);
+	if (ft_str_is_same(id, "sp"))
+		return (SPHERE);
+	if (ft_str_is_same(id, "pl"))
+		return (PLANE);
+	if (ft_str_is_same(id, "cy"))
+		return (CYLINDER);
+	pexit("[Parsing Error] Invalid type");
+	return (-1);
+}
+
 int	get_arr_size(char **p)
 {
 	int	i;
@@ -64,7 +82,6 @@ int	get_arr_size(char **p)
 	return (i);
 }
 
-// 동적할당 O, 사용 후 문자열 free
 char	*get_trimmed_line(int fd)
 {
 	char	*line;

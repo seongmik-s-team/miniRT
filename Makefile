@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
-#    Updated: 2024/02/27 17:05:26 by seongmik         ###   ########.fr        #
+#    Updated: 2024/02/27 23:46:41 by jooahn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ OBJ_DIR						:=	object
 VECTOR_DIR					:=	vector
 COLOR_DIR					:=	color
 SCENE_DIR					:=	scene
+AMBIENT_DIR					:=	ambient
+CAMERA_DIR					:=	camera
 HIT_DIR						:=	hit
 RAY_DIR						:=	ray
 SPHERE_DIR					:=	sphere
@@ -47,6 +49,8 @@ SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(LIGHT_DIR)/light.c \
 								$(SRCS_DIR)/$(LIGHT_DIR)/shadow.c \
 								$(SRCS_DIR)/$(SCENE_DIR)/scene.c \
+								$(SRCS_DIR)/$(AMBIENT_DIR)/ambient.c \
+								$(SRCS_DIR)/$(CAMERA_DIR)/camera.c \
 								$(SRCS_DIR)/$(HIT_DIR)/hit.c \
 								$(SRCS_DIR)/$(HIT_DIR)/just_hit.c \
 								$(SRCS_DIR)/$(OBJ_DIR)/object.c \
