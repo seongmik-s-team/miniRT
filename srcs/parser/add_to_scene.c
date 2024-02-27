@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:44:47 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/26 17:43:19 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:11:30 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,42 @@ static t_camera	new_camera(t_scene *scene, char **datas)
 	cam.origin = str_to_point3(datas[1], ',');
 	cam.ov = vunit(validate_uvec(str_to_vec3(datas[2], ',')));
 	cam.fov = validate_fov(ft_strtod(datas[3]));
+	cam.viewport_height = 1.5;
+	cam.viewport_width = scene->aspect_ratio * cam.viewport_height;
+	cam.focal_length = cal_focal_length(cam.viewport_width, cam.fov);
+	cam.horizontal = safe_new_horizontal(cam.ov, cam.viewport_width);
+	cam.vertical = vmult(vunit(vcross(cam.horizontal, cam.ov)),
+			cam.viewport_height);
+	cam.lower_left = vplus(vplus(vplus(cam.origin, vdiv(cam.horizontal, -2.0)),
+				vdiv(cam.vertical, -2.0)), vmult(cam.ov, cam.focal_length));
+	return (cam);
+}
+
+t_camera	move_camera(t_scene *scene, t_point3 move)
+{
+	t_camera	cam;
+
+	cam.origin = vplus(scene->camera.origin, move);
+	cam.ov = scene->camera.ov;
+	cam.fov = scene->camera.fov;
+	cam.viewport_height = 1.5;
+	cam.viewport_width = scene->aspect_ratio * cam.viewport_height;
+	cam.focal_length = cal_focal_length(cam.viewport_width, cam.fov);
+	cam.horizontal = safe_new_horizontal(cam.ov, cam.viewport_width);
+	cam.vertical = vmult(vunit(vcross(cam.horizontal, cam.ov)),
+			cam.viewport_height);
+	cam.lower_left = vplus(vplus(vplus(cam.origin, vdiv(cam.horizontal, -2.0)),
+				vdiv(cam.vertical, -2.0)), vmult(cam.ov, cam.focal_length));
+	return (cam);
+}
+
+t_camera	rotate_camera(t_scene *scene, t_vec3 ov)
+{
+	t_camera	cam;
+
+	cam.origin = scene->camera.origin;
+	cam.ov = ov;
+	cam.fov = scene->camera.fov;
 	cam.viewport_height = 1.5;
 	cam.viewport_width = scene->aspect_ratio * cam.viewport_height;
 	cam.focal_length = cal_focal_length(cam.viewport_width, cam.fov);
