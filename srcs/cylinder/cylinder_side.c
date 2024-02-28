@@ -6,7 +6,7 @@
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:03:31 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/28 16:20:20 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 16:41:37 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ t_bool	cylinder_side_discriminant(t_cylinder *cy, t_ray ray, double *t)
 			* cy->diameter);
 	if (b * b - 4 * a * c > 0)
 	{
-		if (((-b - sqrt(b * b - 4 * a * c)) / (2.0 * a)) > 0)
+		if (((-b - sqrt(b * b - 4 * a * c)) / (2.0 * a)) >= 0)
 			*t = (-b - sqrt(b * b - 4 * a * c)) / (2.0 * a);
-		else if (((-b + sqrt(b * b - 4 * a * c)) / (2.0 * a)) > 0)
+		else if (((-b + sqrt(b * b - 4 * a * c)) / (2.0 * a)) >= 0)
 			*t = (-b + sqrt(b * b - 4 * a * c)) / (2.0 * a);
 		else
 			return (FALSE);
