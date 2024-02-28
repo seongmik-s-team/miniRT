@@ -6,7 +6,7 @@
 #    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
-#    Updated: 2024/02/28 14:43:44 by seongmik         ###   ########.fr        #
+#    Updated: 2024/02/28 16:14:07 by seongmik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,9 +45,10 @@ SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(VECTOR_DIR)/vec_oper_linear_a.c \
 								$(SRCS_DIR)/$(MR_MLX_DIR)/mr_mlx.c \
 								$(SRCS_DIR)/$(MR_MLX_DIR)/mr_mlx_image.c \
+								$(SRCS_DIR)/$(MR_MLX_DIR)/mr_mlx_destroy.c \
 								$(SRCS_DIR)/$(MR_MLX_DIR)/hooks.c \
 								$(SRCS_DIR)/$(COLOR_DIR)/color.c \
-								$(SRCS_DIR)/$(COLOR_DIR)/color2.c \
+								$(SRCS_DIR)/$(COLOR_DIR)/color_rgb.c \
 								$(SRCS_DIR)/$(RAY_DIR)/ray.c \
 								$(SRCS_DIR)/$(LIGHT_DIR)/light.c \
 								$(SRCS_DIR)/$(LIGHT_DIR)/shadow.c \
