@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 20:48:10 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/28 14:10:57 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:06:09 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	pexit(const char *msg)
 {
 	write(2, "Error\n", 6);
-	perror(msg);
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
 	exit(FAILURE);
 }
