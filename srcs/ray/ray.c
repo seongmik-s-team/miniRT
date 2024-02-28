@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 21:15:28 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/28 02:13:04 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 14:11:39 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_ray	ray_primary(t_camera cam, double x, double y)
 
 	ray.origin = cam.origin;
 	ray.direction = vunit(vminus(vplus(vplus(cam.lower_left,
-					vmult(cam.horizontal, x)), vmult(cam.vertical, y)),
-			cam.origin));
+						vmult(cam.horizontal, x)), vmult(cam.vertical, y)),
+				cam.origin));
 	return (ray);
 }
 

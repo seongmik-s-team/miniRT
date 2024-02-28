@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_side.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:03:31 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/28 01:56:20 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 14:10:14 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_bool	hit_cylinder_side(t_scene *scene, t_cylinder *cy, t_ray ray)
 	{
 		p = scene->rec.p;
 		p_proj = vplus(cy->center, vmult(cy->axis, vdot(vminus(scene->rec.p,
-						cy->center), cy->axis)));
+							cy->center), cy->axis)));
 		nv = vunit(vminus(p, p_proj));
 		if (vdot(ray.direction, nv) > 0)
 			nv = (vmult(nv, -1));
@@ -51,7 +51,7 @@ t_bool	just_hit_cylinder_side(t_cylinder *cy, t_ray ray, t_recoder *rec)
 	{
 		p = ray_at(ray, t);
 		p_proj = vplus(cy->center, vmult(cy->axis, vdot(vminus(p, cy->center),
-					cy->axis)));
+						cy->axis)));
 		distance = vdot(vminus(p_proj, cy->center), cy->axis);
 		if (distance < -0.5 * cy->height || distance > 0.5 * cy->height)
 			return (FALSE);
@@ -73,11 +73,11 @@ t_bool	cylinder_side_discriminant(t_cylinder *cy, t_ray ray, double *t)
 
 	oc = (t_vec3)vminus(ray.origin, cy->center);
 	a = vdot(ray.direction, ray.direction) - pow(vdot(ray.direction, cy->axis),
-		2);
+			2);
 	b = 2.0 * ((vdot(ray.direction, oc) - vdot(ray.direction, cy->axis)
-			* vdot(oc, cy->axis)));
+				* vdot(oc, cy->axis)));
 	c = vdot(oc, oc) - pow(vdot(oc, cy->axis), 2) - (cy->diameter
-		* cy->diameter);
+			* cy->diameter);
 	if (b * b - 4 * a * c > 0)
 	{
 		temp = (-b - sqrt(b * b - 4 * a * c)) / (2.0 * a);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 21:16:02 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/28 02:34:23 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 14:09:36 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ t_camera	new_camera(t_scene *scene, char **datas)
 	cam.focal_length = cal_focal_length(cam.viewport_width, cam.fov);
 	cam.horizontal = safe_new_horizontal(cam.ov, cam.viewport_width);
 	cam.vertical = vmult(vunit(vcross(cam.horizontal, cam.ov)),
-		cam.viewport_height);
+			cam.viewport_height);
 	cam.lower_left = vplus(vplus(vplus(cam.origin, vdiv(cam.horizontal, -2.0)),
-			vdiv(cam.vertical, -2.0)), vmult(cam.ov, cam.focal_length));
+				vdiv(cam.vertical, -2.0)), vmult(cam.ov, cam.focal_length));
 	return (cam);
 }
 
@@ -47,9 +47,9 @@ t_camera	move_camera(t_scene *scene, t_point3 move)
 	cam.focal_length = cal_focal_length(cam.viewport_width, cam.fov);
 	cam.horizontal = safe_new_horizontal(cam.ov, cam.viewport_width);
 	cam.vertical = vmult(vunit(vcross(cam.horizontal, cam.ov)),
-		cam.viewport_height);
+			cam.viewport_height);
 	cam.lower_left = vplus(vplus(vplus(cam.origin, vdiv(cam.horizontal, -2.0)),
-			vdiv(cam.vertical, -2.0)), vmult(cam.ov, cam.focal_length));
+				vdiv(cam.vertical, -2.0)), vmult(cam.ov, cam.focal_length));
 	return (cam);
 }
 
@@ -65,9 +65,9 @@ t_camera	rotate_camera(t_scene *scene, t_vec3 ov)
 	cam.focal_length = cal_focal_length(cam.viewport_width, cam.fov);
 	cam.horizontal = safe_new_horizontal(cam.ov, cam.viewport_width);
 	cam.vertical = vmult(vunit(vcross(cam.horizontal, cam.ov)),
-		cam.viewport_height);
+			cam.viewport_height);
 	cam.lower_left = vplus(vplus(vplus(cam.origin, vdiv(cam.horizontal, -2.0)),
-			vdiv(cam.vertical, -2.0)), vmult(cam.ov, cam.focal_length));
+				vdiv(cam.vertical, -2.0)), vmult(cam.ov, cam.focal_length));
 	return (cam);
 }
 

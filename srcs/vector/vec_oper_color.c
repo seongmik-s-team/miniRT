@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.c                                           :+:      :+:    :+:   */
+/*   vec_oper_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 19:29:32 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/28 14:56:09 by seongmik         ###   ########.fr       */
+/*   Created: 2024/02/28 14:43:03 by seongmik          #+#    #+#             */
+/*   Updated: 2024/02/28 14:43:45 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(int argc, char *argv[])
+t_vec3	cmult(t_vec3 lv, t_vec3 rv)
 {
-	t_scene	scene;
+	t_vec3	ret;
 
-	if (argc == 2)
-	{
-		scene_init(&scene);
-		parser(argv[1], &scene);
-		mr_mlx_init(&scene);
-		del_scene(&scene);
-	}
-	exit(SUCCESS);
+	ret.x = lv.x * rv.x;
+	ret.y = lv.y * rv.y;
+	ret.z = lv.z * rv.z;
+	return (ret);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:27:05 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/28 02:17:54 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 14:11:21 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	move_hook(int keycode, t_scene *scene)
 	if (keycode == A_KEY)
 	{
 		scene->camera = move_camera(scene, vunit(vmult(scene->camera.horizontal,
-					-1)));
+						-1)));
 		draw_screen_simple(scene, &scene->ptrs);
 	}
 	else if (keycode == D_KEY)
@@ -28,13 +28,14 @@ void	move_hook(int keycode, t_scene *scene)
 	else if (keycode == W_KEY)
 	{
 		scene->camera = move_camera(scene, vunit(vcross(scene->camera.vertical,
-					scene->camera.horizontal)));
+						scene->camera.horizontal)));
 		draw_screen_simple(scene, &scene->ptrs);
 	}
 	else if (keycode == S_KEY)
 	{
 		scene->camera = move_camera(scene,
-			vunit(vcross(scene->camera.horizontal, scene->camera.vertical)));
+				vunit(vcross(scene->camera.horizontal,
+						scene->camera.vertical)));
 		draw_screen_simple(scene, &scene->ptrs);
 	}
 }
@@ -44,25 +45,25 @@ void	rotate_hook(int keycode, t_scene *scene)
 	if (keycode == LEFT_KEY)
 	{
 		scene->camera = rotate_camera(scene, vunit(vplus(scene->camera.ov,
-					vmult(scene->camera.horizontal, -0.0125))));
+						vmult(scene->camera.horizontal, -0.0125))));
 		draw_screen_simple(scene, &scene->ptrs);
 	}
 	else if (keycode == RIGHT_KEY)
 	{
 		scene->camera = rotate_camera(scene, vunit(vplus(scene->camera.ov,
-					vmult(scene->camera.horizontal, 0.0125))));
+						vmult(scene->camera.horizontal, 0.0125))));
 		draw_screen_simple(scene, &scene->ptrs);
 	}
 	else if (keycode == DOWN_KEY)
 	{
 		scene->camera = rotate_camera(scene, vunit(vplus(scene->camera.ov,
-					vmult(scene->camera.vertical, -0.0125))));
+						vmult(scene->camera.vertical, -0.0125))));
 		draw_screen_simple(scene, &scene->ptrs);
 	}
 	else if (keycode == UP_KEY)
 	{
 		scene->camera = rotate_camera(scene, vunit(vplus(scene->camera.ov,
-					vmult(scene->camera.vertical, 0.0125))));
+						vmult(scene->camera.vertical, 0.0125))));
 		draw_screen_simple(scene, &scene->ptrs);
 	}
 }
