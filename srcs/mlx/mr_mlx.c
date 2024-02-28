@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:09:04 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/28 14:11:26 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:32:13 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	mr_mlx_init(t_scene *scene)
 			&scene->ptrs.data.bits_per_pixel, &scene->ptrs.data.line_length,
 			&scene->ptrs.data.endian);
 	mlx_hook(scene->ptrs.win, 2, 0, key_hook, scene);
-	mlx_hook(scene->ptrs.win, EXIT_BUTTON, 0, exit_hook, &scene->ptrs);
+	mlx_hook(scene->ptrs.win, EXIT_BUTTON, 0, exit_hook, scene);
 	draw_screen_simple(scene, &scene->ptrs);
 	mlx_loop(scene->ptrs.mlx);
 }

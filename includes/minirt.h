@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/28 02:21:19 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 15:28:43 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,8 +204,9 @@ void					pexit(const char *msg);
 
 /*********************************** mlx **************************************/
 void					mr_mlx_init(t_scene *scene);
+void					mr_mlx_destory(t_scene *scene);
 int						key_hook(int keycode, t_scene *scene);
-int						exit_hook(t_mlx_ptrs *ptrs);
+int						exit_hook(t_scene *scene);
 void					mr_mlx_pixel_put(t_data *data, int x, int y, int color);
 void					draw_screen_simple(t_scene *scene, t_mlx_ptrs *ptrs);
 void					draw_screen(t_scene *scene, t_mlx_ptrs *ptrs);

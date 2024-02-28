@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.c                                           :+:      :+:    :+:   */
+/*   mr_mlx_destroy.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 19:29:32 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/28 15:40:23 by seongmik         ###   ########.fr       */
+/*   Created: 2024/02/28 15:20:40 by seongmik          #+#    #+#             */
+/*   Updated: 2024/02/28 15:27:57 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(int argc, char *argv[])
+void	mr_mlx_destory(t_scene *scene)
 {
-	t_scene	scene;
-
-	if (argc == 2)
-	{
-		scene_init(&scene);
-		parser(argv[1], &scene);
-		mr_mlx_init(&scene);
-		mr_mlx_destory(&scene);
-		del_scene(&scene);
-	}
-	exit(SUCCESS);
+	mlx_destroy_image(scene->ptrs.mlx, scene->ptrs.data.img);
+	mlx_destroy_window(scene->ptrs.mlx, scene->ptrs.win);
 }
