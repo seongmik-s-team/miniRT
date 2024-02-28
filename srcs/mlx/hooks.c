@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:27:05 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/28 14:11:21 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:36:39 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	key_hook(int keycode, t_scene *scene)
 {
 	if (keycode == ESC_KEY)
 	{
-		mlx_destroy_window(scene->ptrs.mlx, scene->ptrs.win);
+		mr_mlx_destory(scene);
 		exit(SUCCESS);
 	}
 	else if (keycode == R_KEY)
@@ -92,9 +92,9 @@ int	key_hook(int keycode, t_scene *scene)
 	return (SUCCESS);
 }
 
-int	exit_hook(t_mlx_ptrs *ptrs)
+int	exit_hook(t_scene *scene)
 {
-	mlx_destroy_window(ptrs->mlx, ptrs->win);
+	mr_mlx_destory(scene);
 	exit(SUCCESS);
 	return (SUCCESS);
 }

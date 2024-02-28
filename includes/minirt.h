@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/28 02:21:19 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 16:03:01 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <math.h>
 # include <mlx.h>
 # include <stdio.h>
+
+# define MLX_LITTLE_ENDIAN 0
+# define MLX_BIG_ENDIAN 1
 
 # define ESC_KEY 53
 # define R_KEY 15
@@ -204,8 +207,9 @@ void					pexit(const char *msg);
 
 /*********************************** mlx **************************************/
 void					mr_mlx_init(t_scene *scene);
+void					mr_mlx_destory(t_scene *scene);
 int						key_hook(int keycode, t_scene *scene);
-int						exit_hook(t_mlx_ptrs *ptrs);
+int						exit_hook(t_scene *scene);
 void					mr_mlx_pixel_put(t_data *data, int x, int y, int color);
 void					draw_screen_simple(t_scene *scene, t_mlx_ptrs *ptrs);
 void					draw_screen(t_scene *scene, t_mlx_ptrs *ptrs);
@@ -242,9 +246,10 @@ int						ray_color(t_scene *scene, t_ray ray);
 
 /********************************** color *************************************/
 t_color3				new_color3(double x, double y, double z);
-int						sky_color(t_ray ray);
+int						sky_color(t_scene *scene, t_ray ray);
 t_rgb					to_rgb(t_color3 color);
-int						to_hex(t_rgb rgb);
+int						to_hex_le(t_rgb rgb);
+int						to_hex_be(t_rgb rgb, int bits_per_pixel);
 t_color3				to_color3(t_rgb rgb);
 
 /********************************** object ************************************/
