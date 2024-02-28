@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:29:32 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/27 22:49:51 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 14:56:09 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ int	main(int argc, char *argv[])
 		mr_mlx_init(&scene);
 		del_scene(&scene);
 	}
-	return (SUCCESS);
+	exit(SUCCESS);
 }
