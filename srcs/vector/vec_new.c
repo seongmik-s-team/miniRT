@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   vec_new.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:03:30 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/20 20:21:13 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/28 02:29:13 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// 생성자 : 파라미터 생성
 t_vec3	new_vec3(double x, double y, double z)
 {
 	t_vec3	new_vec3;
@@ -33,7 +32,6 @@ t_point3	new_point3(double x, double y, double z)
 	return (new_point3);
 }
 
-// 생성자 : 복사 생성
 t_vec3	copy_vec3(t_vec3 *origin)
 {
 	t_vec3	new_vec3;

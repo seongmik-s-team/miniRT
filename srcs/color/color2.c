@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_node_idx.c                                  :+:      :+:    :+:   */
+/*   color2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 13:51:26 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/27 22:50:47 by jooahn           ###   ########.fr       */
+/*   Created: 2024/02/28 02:22:26 by jooahn            #+#    #+#             */
+/*   Updated: 2024/02/28 02:22:55 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minirt.h"
 
-int	ft_get_node_idx(t_list *list, t_node *target)
+t_bool	is_rgb(t_rgb rgb)
 {
-	t_node	*node;
-	int		idx;
-
-	if (!list)
-		return (-1);
-	node = list->head;
-	idx = 0;
-	while (node)
-	{
-		if (node == target)
-			return (idx);
-		node = node->next;
-		idx++;
-	}
-	return (-1);
+	if (rgb.r < 0 || rgb.r > 255)
+		return (FALSE);
+	if (rgb.g < 0 || rgb.g > 255)
+		return (FALSE);
+	if (rgb.b < 0 || rgb.b > 255)
+		return (FALSE);
+	return (TRUE);
 }

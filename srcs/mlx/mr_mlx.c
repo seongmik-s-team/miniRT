@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mr_mlx.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:09:04 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/27 19:26:31 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/27 22:48:40 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-t_rgb	to_rgb(t_color3 color)
-{
-	t_rgb	rgb;
-
-	rgb.r = (int)(color.x * RGB_MAX);
-	rgb.g = (int)(color.y * RGB_MAX);
-	rgb.b = (int)(color.z * RGB_MAX);
-	return (rgb);
-}
-
-int	to_hex(t_rgb rgb)
-{
-	return ((rgb.r * (1 << 16)) + (rgb.g * (1 << 8)) + (rgb.b));
-}
 
 void	put_block(t_scene *scene, t_mlx_ptrs *ptrs, int y, int x)
 {
@@ -36,7 +21,7 @@ void	put_block(t_scene *scene, t_mlx_ptrs *ptrs, int y, int x)
 	int		color;
 
 	ray = ray_primary(scene->camera, (double)x / (double)scene->width,
-			(double)(scene->height - y) / (double)scene->height);
+		(double)(scene->height - y) / (double)scene->height);
 	color = ray_color(scene, ray);
 	block_size = (scene->height / 80);
 	i = y;
@@ -86,7 +71,7 @@ void	draw_screen(t_scene *scene, t_mlx_ptrs *ptrs)
 		while (j < scene->width)
 		{
 			ray = ray_primary(scene->camera, (double)j / (double)scene->width,
-					(double)(scene->height - i) / (double)scene->height);
+				(double)(scene->height - i) / (double)scene->height);
 			mr_mlx_pixel_put(&(ptrs->data), j, i, ray_color(scene, ray));
 			j++;
 		}
@@ -99,12 +84,12 @@ void	mr_mlx_init(t_scene *scene)
 {
 	scene->ptrs.mlx = mlx_init();
 	scene->ptrs.win = mlx_new_window(scene->ptrs.mlx, scene->width,
-			scene->height, "miniRT");
+		scene->height, "miniRT");
 	scene->ptrs.data.img = mlx_new_image(scene->ptrs.mlx, scene->width,
-			scene->height);
+		scene->height);
 	scene->ptrs.data.addr = mlx_get_data_addr(scene->ptrs.data.img,
-			&scene->ptrs.data.bits_per_pixel, &scene->ptrs.data.line_length,
-			&scene->ptrs.data.endian);
+		&scene->ptrs.data.bits_per_pixel, &scene->ptrs.data.line_length,
+		&scene->ptrs.data.endian);
 	mlx_hook(scene->ptrs.win, 2, 0, key_hook, scene);
 	mlx_hook(scene->ptrs.win, EXIT_BUTTON, 0, exit_hook, &scene->ptrs);
 	draw_screen_simple(scene, &scene->ptrs);

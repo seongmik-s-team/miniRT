@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list_clear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:03:43 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/20 20:22:29 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/27 22:50:14 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// del : node의 content에 적용할 함수
 void	ft_list_clear(t_list *list, void (*del)(void *))
 {
 	t_node	*node;

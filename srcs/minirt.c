@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:29:32 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/21 17:36:50 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/27 22:49:51 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minirt.h"
-
-t_scene	*new_scene(void);
 
 int	main(int argc, char *argv[])
 {
@@ -21,10 +18,10 @@ int	main(int argc, char *argv[])
 
 	if (argc == 2)
 	{
-		// mlx 창 오픈
 		scene_init(&scene);
 		parser(argv[1], &scene);
-    	mr_mlx_init(&scene);
+		mr_mlx_init(&scene);
+		del_scene(&scene);
 	}
 	return (SUCCESS);
 }

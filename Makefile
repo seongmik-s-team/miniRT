@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 19:05:36 by jooahn            #+#    #+#              #
-#    Updated: 2024/02/27 17:05:26 by seongmik         ###   ########.fr        #
+#    Updated: 2024/02/28 02:22:49 by jooahn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,13 @@ OBJ_DIR						:=	object
 VECTOR_DIR					:=	vector
 COLOR_DIR					:=	color
 SCENE_DIR					:=	scene
+AMBIENT_DIR					:=	ambient
+CAMERA_DIR					:=	camera
 HIT_DIR						:=	hit
 RAY_DIR						:=	ray
 SPHERE_DIR					:=	sphere
 CYLINDER_DIR				:=	cylinder
+CIRCLE_DIR					:=	circle
 PLANE_DIR					:=	plane
 LIGHT_DIR					:=	light
 MR_MLX_DIR					:=	mlx
@@ -43,10 +46,13 @@ SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(MR_MLX_DIR)/mr_mlx_image.c \
 								$(SRCS_DIR)/$(MR_MLX_DIR)/hooks.c \
 								$(SRCS_DIR)/$(COLOR_DIR)/color.c \
+								$(SRCS_DIR)/$(COLOR_DIR)/color2.c \
 								$(SRCS_DIR)/$(RAY_DIR)/ray.c \
 								$(SRCS_DIR)/$(LIGHT_DIR)/light.c \
 								$(SRCS_DIR)/$(LIGHT_DIR)/shadow.c \
 								$(SRCS_DIR)/$(SCENE_DIR)/scene.c \
+								$(SRCS_DIR)/$(AMBIENT_DIR)/ambient.c \
+								$(SRCS_DIR)/$(CAMERA_DIR)/camera.c \
 								$(SRCS_DIR)/$(HIT_DIR)/hit.c \
 								$(SRCS_DIR)/$(HIT_DIR)/just_hit.c \
 								$(SRCS_DIR)/$(OBJ_DIR)/object.c \
@@ -54,7 +60,7 @@ SRCS						:=	$(SRCS_DIR)/minirt.c \
 								$(SRCS_DIR)/$(CYLINDER_DIR)/cylinder.c \
 								$(SRCS_DIR)/$(CYLINDER_DIR)/cylinder_cap.c \
 								$(SRCS_DIR)/$(CYLINDER_DIR)/cylinder_side.c \
-								$(SRCS_DIR)/$(CYLINDER_DIR)/utils.c \
+								$(SRCS_DIR)/$(CIRCLE_DIR)/circle.c \
 								$(SRCS_DIR)/$(SPHERE_DIR)/sphere.c \
 								$(SRCS_DIR)/$(PARSER_DIR)/parser.c \
 								$(SRCS_DIR)/$(PARSER_DIR)/add_to_scene.c \

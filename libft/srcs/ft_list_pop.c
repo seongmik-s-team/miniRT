@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list_pop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahn <ahn@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:03:13 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/18 16:51:52 by ahn              ###   ########.fr       */
+/*   Updated: 2024/02/27 22:51:28 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// list의 맨앞의 요소 pop후 반환
 t_node	*ft_list_pop(t_list *list)
 {
 	t_node	*target;
