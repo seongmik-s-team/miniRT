@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:58:02 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/28 02:20:03 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 14:10:09 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ t_cylinder	*new_cylinder(char **datas)
 	cy->height = ft_strtod(datas[4]);
 	cy->color = to_color3(str_to_rgb(datas[5], ','));
 	cy->topcap = new_circle(cy->axis, vplus(cy->center, vmult(cy->axis, 0.5
-				* cy->height)), cy->diameter);
+					* cy->height)), cy->diameter);
 	cy->botcap = new_circle(vmult(cy->axis, -1), vplus(cy->center,
-			vmult(cy->axis, -0.5 * cy->height)), cy->diameter);
+				vmult(cy->axis, -0.5 * cy->height)), cy->diameter);
 	return (cy);
 }
 

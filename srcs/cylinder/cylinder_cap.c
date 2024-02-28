@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_cap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:04:06 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/28 02:11:35 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 14:10:49 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ t_bool	just_hit_cylinder_cap(t_cylinder *cy, t_ray ray, t_recoder *rec)
 	t_bool		flag;
 
 	top_cap = new_circle(cy->axis, vplus(cy->center, vmult(cy->axis, 0.5
-				* cy->height)), cy->diameter);
+					* cy->height)), cy->diameter);
 	bot_cap = new_circle(vmult(cy->axis, -1), vplus(cy->center, vmult(cy->axis,
-				-0.5 * cy->height)), cy->diameter);
+					-0.5 * cy->height)), cy->diameter);
 	flag = FALSE;
 	if (circle_discriminant(top_cap, ray, &t, &len) && (len < rec->max_len))
 	{

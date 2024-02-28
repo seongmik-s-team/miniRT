@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:43:40 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/28 02:22:58 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 14:09:58 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_color3	cal_color3(t_scene *scene, t_color3 obj_color)
 	result = cmult(result, lighting(light, rec.p, rec.nv));
 	result = cmult(result, shadow(scene, light, rec.p));
 	result = cplus(result, cmult(obj_color, vmult(ambient.color,
-				ambient.ratio)));
+					ambient.ratio)));
 	return (result);
 }
 

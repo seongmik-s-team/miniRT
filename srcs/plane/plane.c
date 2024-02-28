@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:57:33 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/28 02:20:11 by jooahn           ###   ########.fr       */
+/*   Updated: 2024/02/28 14:37:50 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,20 @@ t_plane	*new_plane(char **datas)
 	return (pl);
 }
 
+t_bool	calc_hit_plane(t_scene *scene, t_plane *plane, t_point3 spot, t_ray ray)
+{
+	scene->rec.p = spot;
+	cal_color3(scene, plane->color);
+	scene->rec.color = cal_color3(scene, plane->color);
+	scene->rec.max_len = vlen(vminus(ray.origin, spot));
+	return (TRUE);
+}
+
 t_bool	hit_plane(t_scene *scene, t_plane *plane, t_ray ray)
 {
 	double		no;
 	double		nv;
-	double		t;
 	t_point3	spot;
-	t_point3	shadowed;
-	t_color3	lighted;
 	t_vec3		n;
 
 	if (vdot(plane->axis, ray.direction) == 0)
@@ -45,31 +51,25 @@ t_bool	hit_plane(t_scene *scene, t_plane *plane, t_ray ray)
 	nv = vdot(n, ray.direction);
 	if (nv == 0)
 		return (FALSE);
-	t = -(no / nv);
-	spot = vplus(ray.origin, vmult(ray.direction, t));
+	spot = vplus(ray.origin, vmult(ray.direction, -(no / nv)));
 	if (vdot(vminus(spot, ray.origin), ray.direction) / (vlen(vminus(spot,
 					ray.origin)) * vlen(ray.direction)) < 0)
 		return (FALSE);
 	if (scene->rec.max_len >= vlen(vminus(ray.origin, spot)))
 	{
-		lighted = lighting(scene->light, spot, n);
-		shadowed = shadow(scene, scene->light, spot);
-		scene->rec.color = cplus(cmult(cmult(plane->color, lighted), shadowed),
-			cmult(plane->color, vmult(scene->ambient.color,
-					scene->ambient.ratio)));
-		scene->rec.max_len = vlen(vminus(ray.origin, spot));
-		return (TRUE);
+		scene->rec.nv = n;
+		return (calc_hit_plane(scene, plane, spot, ray));
 	}
 	return (FALSE);
 }
 
 t_bool	just_hit_plane(t_plane *plane, t_ray ray, t_recoder rec)
 {
-	double no;
-	double nv;
-	double t;
-	t_point3 spot;
-	t_vec3 n;
+	double		no;
+	double		nv;
+	double		t;
+	t_point3	spot;
+	t_vec3		n;
 
 	if (vdot(plane->axis, ray.direction) == 0)
 		return (FALSE);
@@ -81,7 +81,6 @@ t_bool	just_hit_plane(t_plane *plane, t_ray ray, t_recoder rec)
 	nv = vdot(n, ray.direction);
 	t = -(no / nv);
 	spot = vplus(ray.origin, vmult(ray.direction, t));
-
 	if (vdot(vminus(spot, ray.origin), ray.direction) / (vlen(vminus(spot,
 					ray.origin)) * vlen(ray.direction)) < 0)
 		return (FALSE);

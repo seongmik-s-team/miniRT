@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   vec_oper_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 20:48:10 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/28 14:10:57 by seongmik         ###   ########.fr       */
+/*   Created: 2024/02/28 14:43:03 by seongmik          #+#    #+#             */
+/*   Updated: 2024/02/28 14:43:45 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	pexit(const char *msg)
+t_vec3	cmult(t_vec3 lv, t_vec3 rv)
 {
-	write(2, "Error\n", 6);
-	perror(msg);
-	exit(FAILURE);
+	t_vec3	ret;
+
+	ret.x = lv.x * rv.x;
+	ret.y = lv.y * rv.y;
+	ret.z = lv.z * rv.z;
+	return (ret);
 }
