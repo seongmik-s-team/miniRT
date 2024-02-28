@@ -6,7 +6,7 @@
 /*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 20:37:09 by seongmik          #+#    #+#             */
-/*   Updated: 2024/02/28 15:28:43 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:03:01 by seongmik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <math.h>
 # include <mlx.h>
 # include <stdio.h>
+
+# define MLX_LITTLE_ENDIAN 0
+# define MLX_BIG_ENDIAN 1
 
 # define ESC_KEY 53
 # define R_KEY 15
@@ -243,9 +246,10 @@ int						ray_color(t_scene *scene, t_ray ray);
 
 /********************************** color *************************************/
 t_color3				new_color3(double x, double y, double z);
-int						sky_color(t_ray ray);
+int						sky_color(t_scene *scene, t_ray ray);
 t_rgb					to_rgb(t_color3 color);
-int						to_hex(t_rgb rgb);
+int						to_hex_le(t_rgb rgb);
+int						to_hex_be(t_rgb rgb, int bits_per_pixel);
 t_color3				to_color3(t_rgb rgb);
 
 /********************************** object ************************************/
