@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_side.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seongmik <seongmik@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jooahn <jooahn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:03:31 by jooahn            #+#    #+#             */
-/*   Updated: 2024/02/28 14:10:14 by seongmik         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:20:20 by jooahn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ t_bool	cylinder_side_discriminant(t_cylinder *cy, t_ray ray, double *t)
 	double	b;
 	double	c;
 	t_vec3	oc;
-	double	temp;
 
 	oc = (t_vec3)vminus(ray.origin, cy->center);
 	a = vdot(ray.direction, ray.direction) - pow(vdot(ray.direction, cy->axis),
@@ -80,14 +79,12 @@ t_bool	cylinder_side_discriminant(t_cylinder *cy, t_ray ray, double *t)
 			* cy->diameter);
 	if (b * b - 4 * a * c > 0)
 	{
-		temp = (-b - sqrt(b * b - 4 * a * c)) / (2.0 * a);
-		if (temp < 0)
-		{
-			temp = (-b + sqrt(b * b - 4 * a * c)) / (2.0 * a);
-			if (temp < 0)
-				return (FALSE);
-		}
-		*t = temp;
+		if (((-b - sqrt(b * b - 4 * a * c)) / (2.0 * a)) > 0)
+			*t = (-b - sqrt(b * b - 4 * a * c)) / (2.0 * a);
+		else if (((-b + sqrt(b * b - 4 * a * c)) / (2.0 * a)) > 0)
+			*t = (-b + sqrt(b * b - 4 * a * c)) / (2.0 * a);
+		else
+			return (FALSE);
 		return (TRUE);
 	}
 	return (FALSE);
